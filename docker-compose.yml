@@ -1,0 +1,18 @@
+version: '3'
+services:
+  gatsby:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: elc-blog-gatsby-container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    command: gatsby develop -H 0.0.0.0
+volumes:
+  node_modules:
