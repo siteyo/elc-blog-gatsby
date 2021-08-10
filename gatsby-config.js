@@ -37,5 +37,6 @@ module.exports = {
       __key: "images",
     },
     `gatsby-plugin-material-ui`,
+    `gatsby-plugin-typegen`,
   ],
 };
