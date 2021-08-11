@@ -6,6 +6,18 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "elc",
+    menuLinks: [
+      { name: 'Works', link: '/works' },
+      { name: 'Discography', link: '/discography' },
+      { name: 'Biography', link: '/biography' },
+      { name: `Mix request`, link: `/mix_request` },
+      { name: `Contact`, link: `/contact` },
+    ],
+    socialUrl: {
+      twitter: 'http://twitter.com/_yst',
+      youtube: '',
+      soundcloud: ''
+    }
   },
   plugins: [
     {
