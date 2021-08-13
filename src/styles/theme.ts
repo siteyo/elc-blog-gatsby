@@ -15,5 +15,5 @@ const theme = createTheme({
 });
 
 export default responsiveFontSizes(theme, {
-  breakpoints: ['sm', 'lg'],
+  breakpoints: ['md', 'xl'],
 });
