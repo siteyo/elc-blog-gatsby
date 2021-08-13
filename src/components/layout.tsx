@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Container from '@material-ui/core/Container';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SNS from './sns';
 import theme from '../styles/theme';
@@ -9,9 +9,7 @@ import Menu from './menu';
 
 /* Styles */
 const useStyles = makeStyles({
-  sns: {
-    width: 200,
-  },
+  sns: {},
   header: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -40,12 +38,16 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="md">
-        <Box className={classes.header}>
-          <Typography variant="h1" color="primary">
-            {data.site?.siteMetadata?.title}
-          </Typography>
-          <SNS className={classes.sns} />
-        </Box>
+        <Grid container>
+          <Grid item sm={9}>
+            <Typography variant="h1" color="primary">
+              {data.site?.siteMetadata?.title}
+            </Typography>
+          </Grid>
+          <Grid sm={3}>
+            <SNS className={classes.sns} />
+          </Grid>
+        </Grid>
         <Menu />
         {children}
       </Container>
