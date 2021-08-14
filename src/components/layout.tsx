@@ -1,11 +1,17 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Container from '@material-ui/core/Container';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import {
+  Container,
+  Divider,
+  Grid,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SNS from './sns';
 import theme from '../styles/theme';
 import Menu from './menu';
+import Footer from './footer';
 
 /* Styles */
 const useStyles = makeStyles({
@@ -49,7 +55,9 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
           </Grid>
         </Grid>
         <Menu />
+        <Divider />
         {children}
+        <Footer />
       </Container>
     </ThemeProvider>
   );
