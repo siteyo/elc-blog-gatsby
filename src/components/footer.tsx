@@ -7,11 +7,11 @@ import SNS from './sns';
 const Footer: React.VFC = () => {
   return (
     <Grid container>
-      <Grid sm={3} />
-      <Grid sm={6} style={{ textAlign: 'center' }}>
+      <Grid item sm={3} />
+      <Grid item sm={6} style={{ textAlign: 'center' }}>
         <ArrowDropUpIcon />
       </Grid>
-      <Grid sm={3}>
+      <Grid item sm={3}>
         <SNS />
       </Grid>
     </Grid>

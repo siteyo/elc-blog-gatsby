@@ -21,7 +21,7 @@ const Menu: React.VFC = () => {
   return (
     <Grid container justifyContent="center" style={{ height: '3rem' }}>
       {data.site?.siteMetadata?.menuLinks?.map(menu => (
-        <Grid item xs={2}>
+        <Grid item xs={2} key={menu?.name}>
           <Link to={menu?.link ?? '/'}>
             <Typography variant="h5" color="primary" align="center">
               {menu?.name}

@@ -51,7 +51,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
               {data.site?.siteMetadata?.title}
             </Typography>
           </Grid>
-          <Grid sm={3}>
+          <Grid item sm={3}>
             <SNS className={classes.sns} />
           </Grid>
         </Grid>
