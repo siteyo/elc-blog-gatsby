@@ -6,6 +6,7 @@ import {
   Grid,
   makeStyles,
   Typography,
+  Box,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SNS from './sns';
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 
 /* Interfaces */
 interface LayoutProps {
-  children: React.ReactChild;
+  children: React.ReactNode;
 }
 
 /* Component */
@@ -56,7 +57,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
         </Grid>
         <Menu />
         <Divider />
-        {children}
+        <Box style={{ width: '80%' }}>{children}</Box>
         <Footer />
       </Container>
     </ThemeProvider>
