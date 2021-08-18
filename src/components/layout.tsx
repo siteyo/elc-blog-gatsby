@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 /* Interfaces */
 interface LayoutProps {
-  children: React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
 }
 
 /* Component */

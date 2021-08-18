@@ -1,24 +1,29 @@
 import React from 'react';
-import { Typography, Paper, Grid } from '@material-ui/core';
+import { Typography, Grid, makeStyles, Box, Divider } from '@material-ui/core';
 import { Link } from 'gatsby';
 
+/* Styles */
+const useStyles = makeStyles({
+  container: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+});
+
+/* Interface */
 interface PostCardProps {
   title: string;
-  description: string;
   createdAt: string;
   slug: string;
 }
 
-const PostCard: React.VFC<PostCardProps> = ({
-  title,
-  description,
-  createdAt,
-  slug,
-}) => {
+/* Component */
+const PostCard: React.VFC<PostCardProps> = ({ title, createdAt, slug }) => {
+  const classes = useStyles();
   return (
-    <Link to={`/works/${slug}`}>
-      <Paper>
-        <Grid container>
+    <Box>
+      <Link to={`/works/${slug}`}>
+        <Grid className={classes.container} container>
           <Grid item sm={9} xs={12}>
             <Typography variant="h4">{title}</Typography>
           </Grid>
@@ -26,9 +31,9 @@ const PostCard: React.VFC<PostCardProps> = ({
             {createdAt}
           </Grid>
         </Grid>
-        <Typography variant="h6">{description}</Typography>
-      </Paper>
-    </Link>
+      </Link>
+      <Divider />
+    </Box>
   );
 };
 
