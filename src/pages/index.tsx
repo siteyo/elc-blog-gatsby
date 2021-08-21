@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import Layout from '../components/layout';
+import Layout from 'components/layout';
 
 // Page
 const IndexPage: React.FC = () => {

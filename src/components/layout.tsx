@@ -8,10 +8,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import SNS from './sns';
-import theme from '../styles/theme';
-import Menu from './menu';
-import Footer from './footer';
+import SNS from 'components/sns';
+import theme from 'styles/theme';
+import Menu from 'components/menu';
+import Footer from 'components/footer';
 
 /* Styles */
 const useStyles = makeStyles({

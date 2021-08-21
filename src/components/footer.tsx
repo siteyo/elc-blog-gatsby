@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import SNS from './sns';
+import SNS from 'components/sns';
 
 /* Component */
 const Footer: React.VFC = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/layout';
-import PostCard from '../components/PostCard';
+import Layout from 'components/layout';
+import PostCard from 'components/PostCard';
 
 interface WorksProps {
   data: GatsbyTypes.WorksPageQuery;
