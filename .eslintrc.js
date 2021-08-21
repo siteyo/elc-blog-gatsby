@@ -63,5 +63,13 @@ module.exports = {
                 tsx: 'never',
             },
         ],
+    },
+    settings: {
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx']
+        },
+        'import/resolver': {
+            typescript: {}
+        }
     }
 };

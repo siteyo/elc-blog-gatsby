@@ -50,5 +50,6 @@ module.exports = {
     },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-typegen`,
+    `gatsby-plugin-root-import`,
   ],
 };
