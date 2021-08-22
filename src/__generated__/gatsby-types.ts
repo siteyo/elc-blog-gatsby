@@ -319,8 +319,16 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
+};
+
+type SitePageContext = {
+  readonly limit: Maybe<Scalars['Int']>;
+  readonly skip: Maybe<Scalars['Int']>;
+  readonly numPage: Maybe<Scalars['Int']>;
+  readonly currentPage: Maybe<Scalars['Int']>;
 };
 
 type ImageFormat =
@@ -1156,6 +1164,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
@@ -2449,6 +2458,13 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly limit: Maybe<IntQueryOperatorInput>;
+  readonly skip: Maybe<IntQueryOperatorInput>;
+  readonly numPage: Maybe<IntQueryOperatorInput>;
+  readonly currentPage: Maybe<IntQueryOperatorInput>;
+};
+
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2679,6 +2695,10 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.limit'
+  | 'context.skip'
+  | 'context.numPage'
+  | 'context.currentPage'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -2795,6 +2815,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
@@ -4316,6 +4337,14 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type WorksPageQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
+
+
+type WorksPageQuery = { readonly allContentfulWorks: { readonly edges: ReadonlyArray<{ readonly node: Pick<ContentfulWorks, 'title' | 'updatedAt' | 'createdAt' | 'slug'> }> } };
+
 type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4329,10 +4358,10 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
 
-type WorksPageQueryVariables = Exact<{ [key: string]: never; }>;
+type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type WorksPageQuery = { readonly allContentfulWorks: { readonly edges: ReadonlyArray<{ readonly node: Pick<ContentfulWorks, 'title' | 'updatedAt' | 'createdAt' | 'slug'> }> } };
+type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -4353,11 +4382,6 @@ type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio
 type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
