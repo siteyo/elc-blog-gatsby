@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import {
   Container,
   Divider,
@@ -23,6 +23,10 @@ const useStyles = makeStyles({
   },
   divider: {
     margin: '1rem 0',
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
   },
 });
 
@@ -52,7 +56,9 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
         <Grid container>
           <Grid item sm={9}>
             <Typography variant="h1" color="primary">
-              {data.site?.siteMetadata?.title}
+              <Link className={classes.link} to="/">
+                {data.site?.siteMetadata?.title}
+              </Link>
             </Typography>
           </Grid>
           <Grid item sm={3}>
