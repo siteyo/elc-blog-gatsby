@@ -1,9 +1,23 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+
+/* Styles */
+const useStyles = makeStyles(theme =>
+  createStyles({
+    link: {
+      textDecoration: 'none',
+      color: 'inherit',
+      '&:hover': {
+        borderBottom: `solid 1px ${theme.palette.primary.main}`,
+      },
+    },
+  }),
+);
 
 /* Component */
 const Menu: React.VFC = () => {
+  const classes = useStyles();
   const data = useStaticQuery<GatsbyTypes.MenuLinksQuery>(
     graphql`
       query MenuLinks {
@@ -22,11 +36,11 @@ const Menu: React.VFC = () => {
     <Grid container justifyContent="center">
       {data.site?.siteMetadata?.menuLinks?.map(menu => (
         <Grid item xs={2} key={menu?.name}>
-          <Link to={menu?.link ?? '/'}>
-            <Typography variant="h5" color="primary" align="center">
+          <Typography variant="h5" color="primary" align="center">
+            <Link className={classes.link} to={menu?.link ?? '/'}>
               {menu?.name}
-            </Typography>
-          </Link>
+            </Link>
+          </Typography>
         </Grid>
       ))}
     </Grid>
