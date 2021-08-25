@@ -6,6 +6,7 @@ import {
   Grid,
   makeStyles,
   Typography,
+  CssBaseline,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SNS from 'components/sns';
@@ -43,6 +44,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
   );
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container maxWidth="md">
         <Grid container>
           <Grid item sm={9}>
