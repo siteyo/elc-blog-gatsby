@@ -1,37 +1,66 @@
 import React from 'react';
-import { Typography, Grid, makeStyles, Box, Divider } from '@material-ui/core';
+import {
+  Typography,
+  Grid,
+  makeStyles,
+  createStyles,
+  Box,
+  Divider,
+} from '@material-ui/core';
 import { Link } from 'gatsby';
 
 /* Styles */
-const useStyles = makeStyles({
-  container: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-});
+const useStyles = makeStyles(theme =>
+  createStyles({
+    container: {
+      marginTop: 20,
+      marginBottom: 20,
+    },
+    link: {
+      textDecoration: 'none',
+      color: 'inherit',
+      '&:hover': {
+        borderBottom: `solid 1px ${theme.palette.primary.main}`,
+      },
+    },
+  }),
+);
 
 /* Interface */
 interface PostCardProps {
   title: string;
   createdAt: string;
   slug: string;
+  description?: string;
 }
 
 /* Component */
-const PostCard: React.VFC<PostCardProps> = ({ title, createdAt, slug }) => {
+const PostCard: React.VFC<PostCardProps> = ({
+  title,
+  createdAt,
+  slug,
+  description,
+}) => {
   const classes = useStyles();
   return (
     <Box>
-      <Link to={`/works/${slug}`}>
-        <Grid className={classes.container} container>
-          <Grid item sm={9} xs={12}>
-            <Typography variant="h4">{title}</Typography>
-          </Grid>
-          <Grid item sm={3} xs={12}>
-            {createdAt}
-          </Grid>
+      <Grid className={classes.container} container>
+        <Grid item sm={9} xs={12}>
+          <Typography variant="h5" color="primary">
+            <Link className={classes.link} to={`/works/${slug}`}>
+              {title}
+            </Link>
+          </Typography>
         </Grid>
-      </Link>
+        <Grid item sm={3} xs={12}>
+          <Typography variant="h6" color="primary">
+            {createdAt}
+          </Typography>
+        </Grid>
+        <Grid item sm={12} xs={12}>
+          {description}
+        </Grid>
+      </Grid>
       <Divider />
     </Box>
   );
