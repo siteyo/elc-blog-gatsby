@@ -21,6 +21,9 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  divider: {
+    margin: '1rem 0',
+  },
 });
 
 /* Interfaces */
@@ -57,7 +60,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
           </Grid>
         </Grid>
         <Menu />
-        <Divider />
+        <Divider className={classes.divider} />
         <Container>{children}</Container>
         <Footer />
       </Container>
