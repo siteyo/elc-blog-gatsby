@@ -15,7 +15,6 @@ module.exports = {
         "plugin:import/typescript",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
         "prettier",
     ],
     "parser": "@typescript-eslint/parser",
@@ -34,7 +33,6 @@ module.exports = {
         "@typescript-eslint",
         "import",
         "jsx-a11y",
-        "prettier",
         "react-hooks",
     ],
     overrides: [
