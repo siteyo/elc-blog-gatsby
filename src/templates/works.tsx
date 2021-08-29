@@ -1,5 +1,6 @@
 import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, PageProps, navigate } from 'gatsby';
+import { Pagination } from '@material-ui/lab';
 import Layout from 'components/layout';
 import PostCard from 'components/PostCard';
 
@@ -21,10 +22,21 @@ const Works: React.VFC<
       slug={edge.node.slug ?? ''}
     />
   ));
+  const handleChange = (_: React.ChangeEvent<unknown>, page: number) => {
+    if (page === 1) {
+      navigate(`/works`);
+    } else {
+      navigate(`/works/page/${page}`);
+    }
+  };
   return (
     <Layout>
       <div>{content}</div>
-      <div>{`${pageContext.currentPage} / ${pageContext.numPage}`}</div>
+      <Pagination
+        page={pageContext.currentPage}
+        count={pageContext.numPage}
+        onChange={handleChange}
+      />
     </Layout>
   );
 };
