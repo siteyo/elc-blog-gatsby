@@ -4332,11 +4332,6 @@ type ContentfulContentTypeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
 type WorksPageQueryVariables = Exact<{
   skip: Scalars['Int'];
   limit: Scalars['Int'];
@@ -4344,6 +4339,16 @@ type WorksPageQueryVariables = Exact<{
 
 
 type WorksPageQuery = { readonly allContentfulWorks: { readonly edges: ReadonlyArray<{ readonly node: Pick<ContentfulWorks, 'title' | 'updatedAt' | 'createdAt' | 'slug'> }> } };
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteTitleQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4357,11 +4362,6 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
-
-type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SiteTitleQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
