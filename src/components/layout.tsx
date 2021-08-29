@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import {
   Container,
   Divider,
@@ -13,6 +13,7 @@ import SNS from 'components/sns';
 import theme from 'styles/theme';
 import Menu from 'components/menu';
 import Footer from 'components/footer';
+import TextLink from 'components/TextLink';
 
 /* Styles */
 const useStyles = makeStyles({
@@ -53,15 +54,13 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
-        <Grid container>
-          <Grid item sm={9}>
-            <Typography variant="h1" color="primary">
-              <Link className={classes.link} to="/">
-                {data.site?.siteMetadata?.title}
-              </Link>
-            </Typography>
+        <Grid container justifyContent="space-between">
+          <Grid item>
+            <TextLink variant="h1" color="primary" to="/">
+              {data.site?.siteMetadata?.title ?? ''}
+            </TextLink>
           </Grid>
-          <Grid item sm={3}>
+          <Grid item>
             <SNS className={classes.sns} />
           </Grid>
         </Grid>
