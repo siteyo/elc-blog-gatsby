@@ -4,8 +4,7 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import SNS from 'components/sns';
 
 /* Component */
-const Footer: React.VFC = () => {
-  return (
+const Footer: React.VFC = () => (
     <Grid container>
       <Grid item sm={3} />
       <Grid item sm={6} style={{ textAlign: 'center' }}>
@@ -16,6 +15,5 @@ const Footer: React.VFC = () => {
       </Grid>
     </Grid>
   );
-};
 
 export default Footer;
