@@ -1,12 +1,25 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import Layout from 'components/layout';
+import { graphql, PageProps } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 // Page
-const IndexPage: React.FC = () => (
+const IndexPage: React.FC<PageProps<GatsbyTypes.HomeImageQuery>> = ({
+  data,
+}) => (
   <Layout>
-    <Typography variant="h2">Home</Typography>
+    {data.contentfulAsset?.gatsbyImageData && (
+      <GatsbyImage image={data.contentfulAsset.gatsbyImageData} alt="" />
+    )}
   </Layout>
 );
 
 export default IndexPage;
+
+export const query = graphql`
+  query HomeImage {
+    contentfulAsset(title: { eq: "HomeImage" }) {
+      gatsbyImageData(formats: WEBP, layout: FULL_WIDTH, placeholder: BLURRED)
+    }
+  }
+`;

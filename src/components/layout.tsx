@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 /* Interfaces */
 interface LayoutProps {
-  children: React.ReactChild | React.ReactChild[];
+  children?: React.ReactChild | React.ReactChild[];
 }
 
 /* Component */
@@ -65,7 +65,9 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
         </Grid>
         <Menu />
         <Divider className={classes.divider} />
-        <Container>{children}</Container>
+        <Container>
+          <div>{children}</div>
+        </Container>
         <Footer />
       </Container>
     </ThemeProvider>
