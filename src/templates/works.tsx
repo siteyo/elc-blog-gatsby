@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, PageProps, navigate } from 'gatsby';
 import { Pagination } from '@material-ui/lab';
-import Layout from 'components/layout';
+import Layout from 'components/Layout';
 import PostCard from 'components/PostCard';
 import { makeStyles } from '@material-ui/core';
 

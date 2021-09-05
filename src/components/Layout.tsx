@@ -8,10 +8,10 @@ import {
   CssBaseline,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import SNS from 'components/sns';
+import SNS from 'components/Sns';
 import theme from 'styles/theme';
-import Menu from 'components/menu';
-import Footer from 'components/footer';
+import Menu from 'components/Menu';
+import Footer from 'components/Footer';
 import TextLink from 'components/TextLink';
 
 /* Styles */
