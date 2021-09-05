@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Hidden } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useStaticQuery, graphql } from 'gatsby';
 import TextLink from 'components/TextLink';
 
@@ -21,21 +21,19 @@ const Menu: React.VFC = () => {
   );
   return (
     <Grid container justifyContent="center">
-      <Hidden xsDown>
-        {data.site?.siteMetadata?.menuLinks?.map(menu => (
-          <Grid item xs={2} key={menu?.name}>
-            <TextLink
-              align="center"
-              variant="h5"
-              color="primary"
-              underline="hover"
-              to={menu?.link ?? '/'}
-            >
-              {menu?.name ?? ''}
-            </TextLink>
-          </Grid>
-        ))}
-      </Hidden>
+      {data.site?.siteMetadata?.menuLinks?.map(menu => (
+        <Grid item xs={2} key={menu?.name}>
+          <TextLink
+            align="center"
+            variant="h5"
+            color="primary"
+            underline="hover"
+            to={menu?.link ?? '/'}
+          >
+            {menu?.name ?? ''}
+          </TextLink>
+        </Grid>
+      ))}
     </Grid>
   );
 };

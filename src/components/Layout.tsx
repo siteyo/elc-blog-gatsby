@@ -6,6 +6,7 @@ import {
   Grid,
   makeStyles,
   CssBaseline,
+  Hidden,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import SNS from 'components/Sns';
@@ -13,6 +14,7 @@ import theme from 'styles/theme';
 import Menu from 'components/Menu';
 import Footer from 'components/Footer';
 import TextLink from 'components/TextLink';
+import MenuBar from 'components/MenuBar';
 
 /* Styles */
 const useStyles = makeStyles({
@@ -38,12 +40,16 @@ interface LayoutProps {
 /* Component */
 const Layout: React.VFC<LayoutProps> = ({ children }) => {
   const classes = useStyles();
-  const data = useStaticQuery<GatsbyTypes.SiteTitleQuery>(
+  const data = useStaticQuery<GatsbyTypes.LayoutQuery>(
     graphql`
-      query SiteTitle {
+      query Layout {
         site {
           siteMetadata {
             title
+            menuLinks {
+              link
+              name
+            }
           }
         }
       }
@@ -60,10 +66,17 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
             </TextLink>
           </Grid>
           <Grid item>
-            <SNS className={classes.sns} />
+            <Hidden xsDown>
+              <SNS className={classes.sns} />
+            </Hidden>
+            <Hidden smUp>
+              <MenuBar title={data.site?.siteMetadata?.title ?? ''} menuLinks={data.site?.siteMetadata?.menuLinks ?? []} />
+            </Hidden>
           </Grid>
         </Grid>
-        <Menu />
+        <Hidden xsDown>
+          <Menu />
+        </Hidden>
         <Divider className={classes.divider} />
         <Container>
           <div>{children}</div>

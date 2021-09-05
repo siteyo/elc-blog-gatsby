@@ -4460,4 +4460,12 @@ type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | '
 
 type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title'>
+      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
+    )> }> };
+
 }
