@@ -81,6 +81,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
         <Container>
           <div>{children}</div>
         </Container>
+        <Divider className={classes.divider} />
         <Footer />
       </Container>
     </ThemeProvider>
