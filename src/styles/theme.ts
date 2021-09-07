@@ -10,7 +10,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontSize: 10,
+    fontSize: 12,
   },
 });
 
