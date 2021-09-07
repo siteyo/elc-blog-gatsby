@@ -329,6 +329,27 @@ type SitePageContext = {
   readonly skip: Maybe<Scalars['Int']>;
   readonly numPage: Maybe<Scalars['Int']>;
   readonly currentPage: Maybe<Scalars['Int']>;
+  readonly post: Maybe<SitePageContextPost>;
+};
+
+type SitePageContextPost = {
+  readonly node: Maybe<SitePageContextPostNode>;
+};
+
+type SitePageContextPostNode = {
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly body: Maybe<SitePageContextPostNodeBody>;
+};
+
+type SitePageContextPostNodeBody = {
+  readonly raw: Maybe<Scalars['String']>;
+  readonly references: Maybe<ReadonlyArray<Maybe<SitePageContextPostNodeBodyReferences>>>;
+};
+
+type SitePageContextPostNodeBodyReferences = {
+  readonly _xtypename: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -902,6 +923,15 @@ type SitePlugin = Node & {
 };
 
 type SitePluginPluginOptions = {
+  readonly spaceId: Maybe<Scalars['String']>;
+  readonly accessToken: Maybe<Scalars['String']>;
+  readonly host: Maybe<Scalars['String']>;
+  readonly environment: Maybe<Scalars['String']>;
+  readonly downloadLocal: Maybe<Scalars['Boolean']>;
+  readonly forceFullSync: Maybe<Scalars['Boolean']>;
+  readonly pageLimit: Maybe<Scalars['Int']>;
+  readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
+  readonly useNameForId: Maybe<Scalars['Boolean']>;
   readonly sourceMap: Maybe<Scalars['Boolean']>;
   readonly autoLabel: Maybe<Scalars['String']>;
   readonly labelFormat: Maybe<Scalars['String']>;
@@ -927,15 +957,6 @@ type SitePluginPluginOptions = {
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
-  readonly spaceId: Maybe<Scalars['String']>;
-  readonly accessToken: Maybe<Scalars['String']>;
-  readonly host: Maybe<Scalars['String']>;
-  readonly environment: Maybe<Scalars['String']>;
-  readonly downloadLocal: Maybe<Scalars['Boolean']>;
-  readonly forceFullSync: Maybe<Scalars['Boolean']>;
-  readonly pageLimit: Maybe<Scalars['Int']>;
-  readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
-  readonly useNameForId: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPackageJson = {
@@ -2483,6 +2504,31 @@ type SitePageContextFilterInput = {
   readonly skip: Maybe<IntQueryOperatorInput>;
   readonly numPage: Maybe<IntQueryOperatorInput>;
   readonly currentPage: Maybe<IntQueryOperatorInput>;
+  readonly post: Maybe<SitePageContextPostFilterInput>;
+};
+
+type SitePageContextPostFilterInput = {
+  readonly node: Maybe<SitePageContextPostNodeFilterInput>;
+};
+
+type SitePageContextPostNodeFilterInput = {
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly body: Maybe<SitePageContextPostNodeBodyFilterInput>;
+};
+
+type SitePageContextPostNodeBodyFilterInput = {
+  readonly raw: Maybe<StringQueryOperatorInput>;
+  readonly references: Maybe<SitePageContextPostNodeBodyReferencesFilterListInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextPostNodeBodyReferencesFilterInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesFilterInput = {
+  readonly _xtypename: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2502,6 +2548,15 @@ type SitePluginFilterInput = {
 };
 
 type SitePluginPluginOptionsFilterInput = {
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly accessToken: Maybe<StringQueryOperatorInput>;
+  readonly host: Maybe<StringQueryOperatorInput>;
+  readonly environment: Maybe<StringQueryOperatorInput>;
+  readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
+  readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
+  readonly pageLimit: Maybe<IntQueryOperatorInput>;
+  readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
+  readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
   readonly sourceMap: Maybe<BooleanQueryOperatorInput>;
   readonly autoLabel: Maybe<StringQueryOperatorInput>;
   readonly labelFormat: Maybe<StringQueryOperatorInput>;
@@ -2527,15 +2582,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly accessToken: Maybe<StringQueryOperatorInput>;
-  readonly host: Maybe<StringQueryOperatorInput>;
-  readonly environment: Maybe<StringQueryOperatorInput>;
-  readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
-  readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
-  readonly pageLimit: Maybe<IntQueryOperatorInput>;
-  readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
-  readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPackageJsonFilterInput = {
@@ -2719,6 +2765,9 @@ type SitePageFieldsEnum =
   | 'context.skip'
   | 'context.numPage'
   | 'context.currentPage'
+  | 'context.post.node.createdAt'
+  | 'context.post.node.title'
+  | 'context.post.node.slug'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -2760,6 +2809,15 @@ type SitePageFieldsEnum =
   | 'pluginCreator.resolve'
   | 'pluginCreator.name'
   | 'pluginCreator.version'
+  | 'pluginCreator.pluginOptions.spaceId'
+  | 'pluginCreator.pluginOptions.accessToken'
+  | 'pluginCreator.pluginOptions.host'
+  | 'pluginCreator.pluginOptions.environment'
+  | 'pluginCreator.pluginOptions.downloadLocal'
+  | 'pluginCreator.pluginOptions.forceFullSync'
+  | 'pluginCreator.pluginOptions.pageLimit'
+  | 'pluginCreator.pluginOptions.assetDownloadWorkers'
+  | 'pluginCreator.pluginOptions.useNameForId'
   | 'pluginCreator.pluginOptions.sourceMap'
   | 'pluginCreator.pluginOptions.autoLabel'
   | 'pluginCreator.pluginOptions.labelFormat'
@@ -2785,15 +2843,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.allExtensions'
   | 'pluginCreator.pluginOptions.isTSX'
   | 'pluginCreator.pluginOptions.jsxPragma'
-  | 'pluginCreator.pluginOptions.spaceId'
-  | 'pluginCreator.pluginOptions.accessToken'
-  | 'pluginCreator.pluginOptions.host'
-  | 'pluginCreator.pluginOptions.environment'
-  | 'pluginCreator.pluginOptions.downloadLocal'
-  | 'pluginCreator.pluginOptions.forceFullSync'
-  | 'pluginCreator.pluginOptions.pageLimit'
-  | 'pluginCreator.pluginOptions.assetDownloadWorkers'
-  | 'pluginCreator.pluginOptions.useNameForId'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
   | 'pluginCreator.ssrAPIs'
@@ -3988,6 +4037,15 @@ type SitePluginFieldsEnum =
   | 'resolve'
   | 'name'
   | 'version'
+  | 'pluginOptions.spaceId'
+  | 'pluginOptions.accessToken'
+  | 'pluginOptions.host'
+  | 'pluginOptions.environment'
+  | 'pluginOptions.downloadLocal'
+  | 'pluginOptions.forceFullSync'
+  | 'pluginOptions.pageLimit'
+  | 'pluginOptions.assetDownloadWorkers'
+  | 'pluginOptions.useNameForId'
   | 'pluginOptions.sourceMap'
   | 'pluginOptions.autoLabel'
   | 'pluginOptions.labelFormat'
@@ -4013,15 +4071,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.allExtensions'
   | 'pluginOptions.isTSX'
   | 'pluginOptions.jsxPragma'
-  | 'pluginOptions.spaceId'
-  | 'pluginOptions.accessToken'
-  | 'pluginOptions.host'
-  | 'pluginOptions.environment'
-  | 'pluginOptions.downloadLocal'
-  | 'pluginOptions.forceFullSync'
-  | 'pluginOptions.pageLimit'
-  | 'pluginOptions.assetDownloadWorkers'
-  | 'pluginOptions.useNameForId'
   | 'nodeAPIs'
   | 'browserAPIs'
   | 'ssrAPIs'
@@ -4386,20 +4435,23 @@ type WorksPageQueryVariables = Exact<{
 
 type WorksPageQuery = { readonly allContentfulWorks: { readonly edges: ReadonlyArray<{ readonly node: Pick<ContentfulWorks, 'title' | 'updatedAt' | 'createdAt' | 'slug'> }> } };
 
-type HomeImageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type HomeImageQuery = { readonly contentfulAsset: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> };
-
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
+type HomeImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SiteTitleQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+type HomeImageQuery = { readonly contentfulAsset: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> };
+
+type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title'>
+      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
+    )> }> };
 
 type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4413,6 +4465,26 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
+
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -4439,33 +4511,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title'>
-      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
-    )> }> };
 
 }
