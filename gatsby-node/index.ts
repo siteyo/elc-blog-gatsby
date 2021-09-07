@@ -1,6 +1,7 @@
 import { GatsbyNode } from 'gatsby';
 import path from 'path';
 import { WorksPageContext } from 'templates/works';
+import { WorkPageContext } from 'templates/work';
 
 // eslint-disable-next-line
 export const createPages: GatsbyNode['createPages'] = async ({
@@ -41,6 +42,41 @@ export const createPages: GatsbyNode['createPages'] = async ({
           skip: i * postsPerPage,
           numPage,
           currentPage: i + 1,
+        },
+      });
+    });
+  });
+
+  // Work Page
+  await graphql<{
+    allContentfulWorks: Pick<GatsbyTypes.Query['allContentfulWorks'], 'edges'>;
+  }>(
+    `
+      query CreateWorkPage {
+        allContentfulWorks(limit: 1000) {
+          edges {
+            node {
+              createdAt
+              title
+              slug
+              body {
+                raw
+                references {
+                  __typename
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  ).then(result => {
+    result.data?.allContentfulWorks?.edges?.forEach(edge => {
+      createPage<WorkPageContext>({
+        path: `/works/${edge.node.slug}`,
+        component: path.resolve('./src/templates/work.tsx'),
+        context: {
+          post: edge,
         },
       });
     });
