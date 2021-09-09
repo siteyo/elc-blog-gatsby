@@ -30,7 +30,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     //   reporter.panicOnBuild(`Error while running GraphQL query.`);
     //   return Promise.reject(result.errors);
     // }
-    const totalCount = result.data?.allContentfulWorks.totalCount ?? 0;
+    const totalCount = result.data?.allContentfulWorks?.totalCount ?? 0;
     const postsPerPage = 10;
     const numPage = Math.ceil(totalCount / postsPerPage);
     Array.from({ length: numPage }).forEach((_, i) => {
