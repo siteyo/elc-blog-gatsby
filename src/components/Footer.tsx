@@ -10,21 +10,22 @@ const useStyles = makeStyles({
 });
 
 /* Component */
-const Footer: React.VFC = () => { 
-  const classes = useStyles()
+const Footer: React.VFC = () => {
+  const classes = useStyles();
   return (
-  <>
-    <Divider className={classes.divider} />
-    <Grid container>
-      <Grid item sm={3} />
-      <Grid item sm={6} style={{ textAlign: 'center' }}>
-        <ArrowDropUpIcon />
+    <>
+      <Divider className={classes.divider} />
+      <Grid container>
+        <Grid item sm={3} />
+        <Grid item sm={6} style={{ textAlign: 'center' }}>
+          <ArrowDropUpIcon />
+        </Grid>
+        <Grid item sm={3}>
+          <SNS />
+        </Grid>
       </Grid>
-      <Grid item sm={3}>
-        <SNS />
-      </Grid>
-    </Grid>
-  </>
-) };
+    </>
+  );
+};
 
 export default Footer;
