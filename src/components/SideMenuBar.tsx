@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 });
 
 /* Component */
-const MenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
+const SideMenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
@@ -51,4 +51,4 @@ const MenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
   );
 };
 
-export default MenuBar;
+export default SideMenuBar;

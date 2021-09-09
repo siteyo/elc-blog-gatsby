@@ -14,7 +14,7 @@ import theme from 'styles/theme';
 import Menu from 'components/Menu';
 import Footer from 'components/Footer';
 import TextLink from 'components/TextLink';
-import MenuBar from 'components/MenuBar';
+import SideMenuBar from 'components/SideMenuBar';
 
 /* Styles */
 const useStyles = makeStyles({
@@ -70,7 +70,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
               <SNS className={classes.sns} />
             </Hidden>
             <Hidden smUp>
-              <MenuBar
+              <SideMenuBar
                 title={data.site?.siteMetadata?.title ?? ''}
                 menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
               />
