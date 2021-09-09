@@ -70,7 +70,10 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
               <SNS className={classes.sns} />
             </Hidden>
             <Hidden smUp>
-              <MenuBar title={data.site?.siteMetadata?.title ?? ''} menuLinks={data.site?.siteMetadata?.menuLinks ?? []} />
+              <MenuBar
+                title={data.site?.siteMetadata?.title ?? ''}
+                menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
+              />
             </Hidden>
           </Grid>
         </Grid>
