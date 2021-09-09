@@ -1,34 +1,15 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import {
-  Container,
-  Divider,
-  Grid,
-  makeStyles,
-  CssBaseline,
-  Hidden,
-} from '@material-ui/core';
+import { Container, makeStyles, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import SNS from 'components/Sns';
 import theme from 'styles/theme';
-import Menu from 'components/Menu';
+import Header from 'components/Header';
 import Footer from 'components/Footer';
-import TextLink from 'components/TextLink';
-import SideMenuBar from 'components/SideMenuBar';
 
 /* Styles */
 const useStyles = makeStyles({
-  sns: {},
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
   divider: {
     margin: '1rem 0',
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'inherit',
   },
 });
 
@@ -59,32 +40,13 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
-        <Grid container justifyContent="space-between">
-          <Grid item>
-            <TextLink variant="h1" color="primary" to="/">
-              {data.site?.siteMetadata?.title ?? ''}
-            </TextLink>
-          </Grid>
-          <Grid item>
-            <Hidden xsDown>
-              <SNS className={classes.sns} />
-            </Hidden>
-            <Hidden smUp>
-              <SideMenuBar
-                title={data.site?.siteMetadata?.title ?? ''}
-                menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
-              />
-            </Hidden>
-          </Grid>
-        </Grid>
-        <Hidden xsDown>
-          <Menu />
-        </Hidden>
-        <Divider className={classes.divider} />
+        <Header
+          title={data.site?.siteMetadata?.title ?? ''}
+          menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
+        />
         <Container>
           <div>{children}</div>
         </Container>
-        <Divider className={classes.divider} />
         <Footer />
       </Container>
     </ThemeProvider>
