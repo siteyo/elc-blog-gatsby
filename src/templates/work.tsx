@@ -116,6 +116,9 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
       <Typography variant="h2" color="primary">
         {pageContext.post.node.title}
       </Typography>
+      <Typography variant="h6" color="secondary">
+        {pageContext.post.node.createdAt}
+      </Typography>
       <div>
         {raw && references && renderRichText({ raw, references }, options)}
       </div>

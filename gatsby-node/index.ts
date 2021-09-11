@@ -56,7 +56,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
         allContentfulWorks(limit: 1000) {
           edges {
             node {
-              createdAt
+              createdAt(formatString: "YYYY/MM/DD")
               title
               slug
               body {
