@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageProps } from 'gatsby';
 import Layout from 'components/Layout';
-import { Typography, Link, Divider } from '@material-ui/core';
+import { Typography, Link, Divider, Box } from '@material-ui/core';
 import {
   renderRichText,
   ContentfulRichTextGatsbyReference,
@@ -62,7 +62,17 @@ const options: Options = {
     ),
     [BLOCKS.EMBEDDED_ENTRY]: node => {
       const { data } = node;
-      return <ReactPlayer url={data.target.url} controls width="100%" />;
+      return (
+        <Box style={{ position: 'relative', paddingTop: '56.25%' }}>
+          <ReactPlayer
+            style={{ position: 'absolute', top: 0, left: 0 }}
+            url={data.target.url}
+            controls
+            width="100%"
+            height="100%"
+          />
+        </Box>
+      );
     },
 
     [INLINES.HYPERLINK]: (node, children) => {
