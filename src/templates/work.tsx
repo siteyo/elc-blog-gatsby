@@ -8,6 +8,7 @@ import {
 } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import { Options } from '@contentful/rich-text-react-renderer';
+import ReactPlayer from 'react-player';
 
 export interface WorkPageContext {
   post: GatsbyTypes.ContentfulWorksEdge;
@@ -59,6 +60,10 @@ const options: Options = {
         <li>{children}</li>
       </Typography>
     ),
+    [BLOCKS.EMBEDDED_ENTRY]: node => {
+      const { data } = node;
+      return <ReactPlayer url={data.target.url} controls width="100%" />;
+    },
 
     [INLINES.HYPERLINK]: (node, children) => {
       const { data } = node;
