@@ -350,6 +350,8 @@ type SitePageContextPostNodeBody = {
 
 type SitePageContextPostNodeBodyReferences = {
   readonly _xtypename: Maybe<Scalars['String']>;
+  readonly contentful_id: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -906,51 +908,6 @@ type ContentfulYouTubeSysContentTypeSys = {
   readonly id: Maybe<Scalars['String']>;
 };
 
-type ContentfulEmbeddedYouTubePlayer = ContentfulReference & ContentfulEntry & Node & {
-  readonly contentful_id: Scalars['String'];
-  readonly id: Scalars['ID'];
-  readonly node_locale: Scalars['String'];
-  readonly url: Maybe<Scalars['String']>;
-  readonly spaceId: Maybe<Scalars['String']>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-  readonly sys: Maybe<ContentfulEmbeddedYouTubePlayerSys>;
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type ContentfulEmbeddedYouTubePlayer_createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type ContentfulEmbeddedYouTubePlayer_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly contentType: Maybe<ContentfulEmbeddedYouTubePlayerSysContentType>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSysContentType = {
-  readonly sys: Maybe<ContentfulEmbeddedYouTubePlayerSysContentTypeSys>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSysContentTypeSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly linkType: Maybe<Scalars['String']>;
-  readonly id: Maybe<Scalars['String']>;
-};
-
 type SitePlugin = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -1083,8 +1040,6 @@ type Query = {
   readonly allContentfulWorks: ContentfulWorksConnection;
   readonly contentfulYouTube: Maybe<ContentfulYouTube>;
   readonly allContentfulYouTube: ContentfulYouTubeConnection;
-  readonly contentfulEmbeddedYouTubePlayer: Maybe<ContentfulEmbeddedYouTubePlayer>;
-  readonly allContentfulEmbeddedYouTubePlayer: ContentfulEmbeddedYouTubePlayerConnection;
   readonly sitePlugin: Maybe<SitePlugin>;
   readonly allSitePlugin: SitePluginConnection;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
@@ -1377,29 +1332,6 @@ type Query_contentfulYouTubeArgs = {
 type Query_allContentfulYouTubeArgs = {
   filter: Maybe<ContentfulYouTubeFilterInput>;
   sort: Maybe<ContentfulYouTubeSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_contentfulEmbeddedYouTubePlayerArgs = {
-  contentful_id: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  node_locale: Maybe<StringQueryOperatorInput>;
-  url: Maybe<StringQueryOperatorInput>;
-  spaceId: Maybe<StringQueryOperatorInput>;
-  createdAt: Maybe<DateQueryOperatorInput>;
-  updatedAt: Maybe<DateQueryOperatorInput>;
-  sys: Maybe<ContentfulEmbeddedYouTubePlayerSysFilterInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allContentfulEmbeddedYouTubePlayerArgs = {
-  filter: Maybe<ContentfulEmbeddedYouTubePlayerFilterInput>;
-  sort: Maybe<ContentfulEmbeddedYouTubePlayerSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2599,6 +2531,8 @@ type SitePageContextPostNodeBodyReferencesFilterListInput = {
 
 type SitePageContextPostNodeBodyReferencesFilterInput = {
   readonly _xtypename: Maybe<StringQueryOperatorInput>;
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -3972,192 +3906,6 @@ type ContentfulYouTubeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ContentfulEmbeddedYouTubePlayerSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulEmbeddedYouTubePlayerSysContentTypeFilterInput>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSysContentTypeFilterInput = {
-  readonly sys: Maybe<ContentfulEmbeddedYouTubePlayerSysContentTypeSysFilterInput>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSysContentTypeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly linkType: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
-type ContentfulEmbeddedYouTubePlayerConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<ContentfulEmbeddedYouTubePlayerEdge>;
-  readonly nodes: ReadonlyArray<ContentfulEmbeddedYouTubePlayer>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly group: ReadonlyArray<ContentfulEmbeddedYouTubePlayerGroupConnection>;
-};
-
-
-type ContentfulEmbeddedYouTubePlayerConnection_distinctArgs = {
-  field: ContentfulEmbeddedYouTubePlayerFieldsEnum;
-};
-
-
-type ContentfulEmbeddedYouTubePlayerConnection_maxArgs = {
-  field: ContentfulEmbeddedYouTubePlayerFieldsEnum;
-};
-
-
-type ContentfulEmbeddedYouTubePlayerConnection_minArgs = {
-  field: ContentfulEmbeddedYouTubePlayerFieldsEnum;
-};
-
-
-type ContentfulEmbeddedYouTubePlayerConnection_sumArgs = {
-  field: ContentfulEmbeddedYouTubePlayerFieldsEnum;
-};
-
-
-type ContentfulEmbeddedYouTubePlayerConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: ContentfulEmbeddedYouTubePlayerFieldsEnum;
-};
-
-type ContentfulEmbeddedYouTubePlayerEdge = {
-  readonly next: Maybe<ContentfulEmbeddedYouTubePlayer>;
-  readonly node: ContentfulEmbeddedYouTubePlayer;
-  readonly previous: Maybe<ContentfulEmbeddedYouTubePlayer>;
-};
-
-type ContentfulEmbeddedYouTubePlayerFieldsEnum =
-  | 'contentful_id'
-  | 'id'
-  | 'node_locale'
-  | 'url'
-  | 'spaceId'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'sys.type'
-  | 'sys.contentType.sys.type'
-  | 'sys.contentType.sys.linkType'
-  | 'sys.contentType.sys.id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type';
-
-type ContentfulEmbeddedYouTubePlayerGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<ContentfulEmbeddedYouTubePlayerEdge>;
-  readonly nodes: ReadonlyArray<ContentfulEmbeddedYouTubePlayer>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type ContentfulEmbeddedYouTubePlayerFilterInput = {
-  readonly contentful_id: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly sys: Maybe<ContentfulEmbeddedYouTubePlayerSysFilterInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type ContentfulEmbeddedYouTubePlayerSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulEmbeddedYouTubePlayerFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 type SitePluginConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePluginEdge>;
@@ -4709,6 +4457,11 @@ type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
 
+type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
+
 type SocialQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4716,11 +4469,6 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
-
-type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

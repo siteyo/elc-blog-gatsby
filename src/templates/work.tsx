@@ -68,7 +68,7 @@ const options: Options = {
     [INLINES.HYPERLINK]: (node, children) => {
       const { data } = node;
       return (
-        <Link href={data.uri} color="secondary">
+        <Link href={data.uri} color="secondary" underline="hover">
           {children}
         </Link>
       );
@@ -102,7 +102,7 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
     body?.references ?? [];
 
   return (
-    <Layout>
+    <Layout contentMaxWidth="sm">
       <Typography variant="h2" color="primary">
         {pageContext.post.node.title}
       </Typography>

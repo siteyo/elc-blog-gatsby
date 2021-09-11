@@ -1,26 +1,19 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Container, makeStyles, CssBaseline } from '@material-ui/core';
+import { Container, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from 'styles/theme';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-/* Styles */
-const useStyles = makeStyles({
-  divider: {
-    margin: '1rem 0',
-  },
-});
-
 /* Interfaces */
 interface LayoutProps {
+  contentMaxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   children?: React.ReactChild | React.ReactChild[];
 }
 
 /* Component */
-const Layout: React.VFC<LayoutProps> = ({ children }) => {
-  const classes = useStyles();
+const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
   const data = useStaticQuery<GatsbyTypes.LayoutQuery>(
     graphql`
       query Layout {
@@ -44,7 +37,7 @@ const Layout: React.VFC<LayoutProps> = ({ children }) => {
           title={data.site?.siteMetadata?.title ?? ''}
           menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
         />
-        <Container>
+        <Container maxWidth={contentMaxWidth}>
           <div>{children}</div>
         </Container>
         <Footer />

@@ -41,7 +41,7 @@ const Works: React.VFC<
     }
   };
   return (
-    <Layout>
+    <Layout contentMaxWidth="sm">
       <div>{content}</div>
       <Pagination
         classes={{ root: classes.pageRoot, ul: classes.pageButtons }}
