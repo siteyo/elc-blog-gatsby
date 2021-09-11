@@ -2,6 +2,7 @@ import React from 'react';
 import { Drawer, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextLink from 'components/TextLink';
+import Sns from 'components/Sns'
 
 /* Interfaces */
 interface MenuBarProps {
@@ -37,6 +38,7 @@ const SideMenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
         <TextLink variant="h1" to="/">
           {title}
         </TextLink>
+        <Sns />
         <ul className={classes.drawerContainer}>
           {menuLinks.map(menu => (
             <li className={classes.drawerItem} key={menu?.name}>

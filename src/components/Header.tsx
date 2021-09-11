@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Hidden, Divider, makeStyles } from '@material-ui/core';
 import TextLink from 'components/TextLink';
-import SNS from 'components/Sns';
+import Sns from 'components/Sns';
 import SideMenuBar from 'components/SideMenuBar';
 import Menu from 'components/Menu';
 
@@ -23,14 +23,14 @@ const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
   return (
     <>
       <Grid container justifyContent="space-between">
-        <Grid item>
+        <Grid item sm={6}>
           <TextLink variant="h1" color="primary" to="/">
             {title}
           </TextLink>
         </Grid>
-        <Grid item>
+        <Grid item sm={2}>
           <Hidden xsDown>
-            <SNS />
+            <Sns />
           </Hidden>
           <Hidden smUp>
             <SideMenuBar title={title} menuLinks={menuLinks} />

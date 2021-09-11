@@ -337,7 +337,7 @@ type SitePageContextPost = {
 };
 
 type SitePageContextPostNode = {
-  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly createdAt: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly body: Maybe<SitePageContextPostNodeBody>;
@@ -2514,7 +2514,7 @@ type SitePageContextPostFilterInput = {
 };
 
 type SitePageContextPostNodeFilterInput = {
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly createdAt: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly body: Maybe<SitePageContextPostNodeBodyFilterInput>;

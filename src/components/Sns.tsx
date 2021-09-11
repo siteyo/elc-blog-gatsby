@@ -4,7 +4,7 @@ import { Box, IconButton, makeStyles } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-interface SNSProps {
+interface SnsProps {
   className?: string;
 }
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SNS: React.VFC<SNSProps> = ({ className }) => {
+const Sns: React.VFC<SnsProps> = ({ className }) => {
   const classes = useStyles();
   const data = useStaticQuery<GatsbyTypes.SocialQuery>(
     graphql`
@@ -58,4 +58,4 @@ const SNS: React.VFC<SNSProps> = ({ className }) => {
   );
 };
 
-export default SNS;
+export default Sns;
