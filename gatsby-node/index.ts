@@ -2,6 +2,7 @@ import { GatsbyNode } from 'gatsby';
 import path from 'path';
 import { WorksPageContext } from 'templates/works';
 import { WorkPageContext } from 'templates/work';
+import { DiscographyPageContext } from 'templates/discography';
 
 // eslint-disable-next-line
 export const createPages: GatsbyNode['createPages'] = async ({
@@ -81,6 +82,38 @@ export const createPages: GatsbyNode['createPages'] = async ({
         component: path.resolve('./src/templates/work.tsx'),
         context: {
           post: edge,
+        },
+      });
+    });
+  });
+
+  // Discography
+  await graphql<{
+    allContentfulDiscography: Pick<
+      GatsbyTypes.Query['allContentfulDiscography'],
+      'totalCount'
+    >;
+  }>(
+    `
+      {
+        allContentfulDiscography {
+          totalCount
+        }
+      }
+    `,
+  ).then(result => {
+    const totalCount = result.data?.allContentfulDiscography?.totalCount ?? 0;
+    const postsPerPage = 15;
+    const numPage = Math.ceil(totalCount / postsPerPage);
+    Array.from({ length: numPage }).forEach((_, i) => {
+      createPage<DiscographyPageContext>({
+        path: i === 0 ? `/discography` : `/discography/page/${i + 1}`,
+        component: path.resolve(`./src/templates/discography.tsx`),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPage,
+          currentPage: i + 1,
         },
       });
     });
