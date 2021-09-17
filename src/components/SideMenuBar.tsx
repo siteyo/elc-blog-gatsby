@@ -2,7 +2,7 @@ import React from 'react';
 import { Drawer, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import TextLink from 'components/TextLink';
-import Sns from 'components/Sns'
+import Sns from 'components/Sns';
 
 /* Interfaces */
 interface MenuBarProps {
