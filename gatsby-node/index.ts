@@ -103,7 +103,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     `,
   ).then(result => {
     const totalCount = result.data?.allContentfulDiscography?.totalCount ?? 0;
-    const postsPerPage = 15;
+    const postsPerPage = 12;
     const numPage = Math.ceil(totalCount / postsPerPage);
     Array.from({ length: numPage }).forEach((_, i) => {
       createPage<DiscographyPageContext>({
