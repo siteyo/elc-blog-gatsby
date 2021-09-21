@@ -341,6 +341,10 @@ type SitePageContextPostNode = {
   readonly title: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly body: Maybe<SitePageContextPostNodeBody>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly released: Maybe<Scalars['String']>;
+  readonly songs: Maybe<SitePageContextPostNodeSongs>;
+  readonly image: Maybe<SitePageContextPostNodeImage>;
 };
 
 type SitePageContextPostNodeBody = {
@@ -352,6 +356,39 @@ type SitePageContextPostNodeBodyReferences = {
   readonly _xtypename: Maybe<Scalars['String']>;
   readonly contentful_id: Maybe<Scalars['String']>;
   readonly url: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPostNodeSongs = {
+  readonly raw: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPostNodeImage = {
+  readonly gatsbyImageData: Maybe<SitePageContextPostNodeImageGatsbyImageData>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageData = {
+  readonly images: Maybe<SitePageContextPostNodeImageGatsbyImageDataImages>;
+  readonly layout: Maybe<Scalars['String']>;
+  readonly backgroundColor: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImages = {
+  readonly sources: Maybe<ReadonlyArray<Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSources>>>;
+  readonly fallback: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFallback>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesSources = {
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesFallback = {
+  readonly src: Maybe<Scalars['String']>;
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -2610,6 +2647,10 @@ type SitePageContextPostNodeFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly body: Maybe<SitePageContextPostNodeBodyFilterInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly released: Maybe<StringQueryOperatorInput>;
+  readonly songs: Maybe<SitePageContextPostNodeSongsFilterInput>;
+  readonly image: Maybe<SitePageContextPostNodeImageFilterInput>;
 };
 
 type SitePageContextPostNodeBodyFilterInput = {
@@ -2625,6 +2666,43 @@ type SitePageContextPostNodeBodyReferencesFilterInput = {
   readonly _xtypename: Maybe<StringQueryOperatorInput>;
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly url: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeSongsFilterInput = {
+  readonly raw: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageFilterInput = {
+  readonly gatsbyImageData: Maybe<SitePageContextPostNodeImageGatsbyImageDataFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataFilterInput = {
+  readonly images: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput>;
+  readonly layout: Maybe<StringQueryOperatorInput>;
+  readonly backgroundColor: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput = {
+  readonly sources: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput>;
+  readonly fallback: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput = {
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput = {
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2864,6 +2942,8 @@ type SitePageFieldsEnum =
   | 'context.post.node.createdAt'
   | 'context.post.node.title'
   | 'context.post.node.slug'
+  | 'context.post.node.description'
+  | 'context.post.node.released'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -4805,6 +4885,17 @@ type WorksPageQueryVariables = Exact<{
 
 type WorksPageQuery = { readonly allContentfulWorks: { readonly edges: ReadonlyArray<{ readonly node: Pick<ContentfulWorks, 'title' | 'updatedAt' | 'createdAt' | 'slug'> }> } };
 
+type DiscographyPageQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
+
+
+type DiscographyPageQuery = { readonly allContentfulDiscography: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulDiscography, 'title' | 'description' | 'released' | 'slug'>
+        & { readonly image: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
+      ) }> } };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4836,26 +4927,6 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
 
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -4881,5 +4952,25 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 }
