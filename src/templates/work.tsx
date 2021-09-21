@@ -2,10 +2,7 @@ import React from 'react';
 import { PageProps } from 'gatsby';
 import Layout from 'components/Layout';
 import { Typography, Link, Divider, Box } from '@material-ui/core';
-import {
-  renderRichText,
-  ContentfulRichTextGatsbyReference,
-} from 'gatsby-source-contentful/rich-text';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import { Options } from '@contentful/rich-text-react-renderer';
 import ReactPlayer from 'react-player';
@@ -107,10 +104,6 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
   pageContext,
 }) => {
   const { body } = pageContext.post.node;
-  const raw = body?.raw;
-  const references: ContentfulRichTextGatsbyReference[] =
-    body?.references ?? [];
-
   return (
     <Layout contentMaxWidth="sm">
       <Typography variant="h2" color="primary">
@@ -119,9 +112,7 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
       <Typography variant="h6" color="secondary">
         {pageContext.post.node.createdAt}
       </Typography>
-      <div>
-        {raw && references && renderRichText({ raw, references }, options)}
-      </div>
+      <Box>{body && renderRichText(body, options)}</Box>
     </Layout>
   );
 };
