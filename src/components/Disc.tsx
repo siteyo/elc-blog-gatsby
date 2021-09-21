@@ -11,7 +11,7 @@ interface DiscProps {
 }
 
 const Disc: React.VFC<DiscProps> = ({ title, released, slug, image }) => (
-  <Link to={`/discography/${slug}`}>
+  <Link to={`/music/${slug}`}>
     <Box>
       <GatsbyImage image={image?.gatsbyImageData} alt="" />
       <Typography variant="body1">{title}</Typography>

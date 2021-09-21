@@ -3,6 +3,7 @@ import path from 'path';
 import { WorksPageContext } from 'templates/works';
 import { WorkPageContext } from 'templates/work';
 import { DiscographyPageContext } from 'templates/discography';
+import { MusicPageContext } from 'templates/Music';
 
 // eslint-disable-next-line
 export const createPages: GatsbyNode['createPages'] = async ({
@@ -114,6 +115,45 @@ export const createPages: GatsbyNode['createPages'] = async ({
           skip: i * postsPerPage,
           numPage,
           currentPage: i + 1,
+        },
+      });
+    });
+  });
+
+  // Music
+  await graphql<{
+    allContentfulDiscography: Pick<
+      GatsbyTypes.Query['allContentfulDiscography'],
+      'edges'
+    >;
+  }>(
+    `
+      query CreateMusicPage {
+        allContentfulDiscography(limit: 1000) {
+          edges {
+            node {
+              title
+              description
+              released(formatString: "YYYY/MM/DD")
+              songs {
+                raw
+              }
+              slug
+              image {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    `,
+  ).then(result => {
+    result.data?.allContentfulDiscography?.edges?.forEach(edge => {
+      createPage<MusicPageContext>({
+        path: `/music/${edge.node.slug}`,
+        component: path.resolve(`./src/templates/Music.tsx`),
+        context: {
+          post: edge,
         },
       });
     });
