@@ -19,6 +19,12 @@
     "fix:eslint": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
     "fix:prettier": "prettier --write ./src/**/*.{js,jsx,ts,tsx}"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.2.0",
     "@contentful/rich-text-types": "^15.1.0",
@@ -60,9 +66,10 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "gatsby-plugin-root-import": "^2.0.7",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.3.5",
-    "husky": "^7.0.0"
+    "typescript": "^4.3.5"
   }
 }
