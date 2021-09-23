@@ -14,8 +14,8 @@ module.exports = {
       { name: `Contact`, link: `/contact` },
     ],
     socialUrl: {
-      twitter: 'http://twitter.com/_yst',
-      youtube: '',
+      twitter: 'http://twitter.com/equnie',
+      youtube: 'https://www.youtube.com/channel/UCa0jy-bqHnmUulmWjTbgvaA/featured',
       soundcloud: ''
     }
   },
