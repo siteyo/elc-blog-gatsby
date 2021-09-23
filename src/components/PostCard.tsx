@@ -7,7 +7,8 @@ import {
   Box,
   Divider,
 } from '@material-ui/core';
-import { Link } from 'gatsby';
+
+import TextLink from 'components/TextLink';
 
 /* Styles */
 const useStyles = makeStyles(theme =>
@@ -46,11 +47,14 @@ const PostCard: React.VFC<PostCardProps> = ({
     <Box>
       <Grid className={classes.container} container>
         <Grid item sm={9} xs={12}>
-          <Typography variant="h5" color="primary">
-            <Link className={classes.link} to={`/works/${slug}`}>
-              {title}
-            </Link>
-          </Typography>
+          <TextLink
+            variant="h5"
+            color="primary"
+            to={`/works/${slug}`}
+            underline="hover"
+          >
+            {title}
+          </TextLink>
         </Grid>
         <Grid item sm={3} xs={12}>
           <Typography variant="h6" color="primary">
