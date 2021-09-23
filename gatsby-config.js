@@ -10,7 +10,7 @@ module.exports = {
       { name: 'Works', link: '/works' },
       { name: 'Discography', link: '/discography' },
       { name: 'Biography', link: '/biography' },
-      { name: `Mix request`, link: `/mix_request` },
+      { name: `Mix request`, link: `/request` },
       { name: `Contact`, link: `/contact` },
     ],
     socialUrl: {
