@@ -62,7 +62,9 @@ const PostCard: React.VFC<PostCardProps> = ({
           </Typography>
         </Grid>
         <Grid item sm={12} xs={12}>
-          {description}
+          <Typography variant="body2" color="secondary">
+            {description}
+          </Typography>
         </Grid>
       </Grid>
       <Divider />

@@ -31,6 +31,7 @@ const Works: React.VFC<
       title={edge.node.title ?? ''}
       createdAt={edge.node.createdAt ?? ''}
       slug={edge.node.slug ?? ''}
+      description={edge.node.description}
     />
   ));
   const handleChange = (_: React.ChangeEvent<unknown>, page: number) => {
@@ -69,6 +70,7 @@ export const query = graphql`
           updatedAt
           createdAt(formatString: "YYYY/MM/DD")
           slug
+          description
         }
       }
     }
