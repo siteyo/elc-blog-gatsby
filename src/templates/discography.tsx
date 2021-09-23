@@ -25,7 +25,7 @@ const Discography: React.FC<
   return (
     <Layout>
       <Grid container spacing={8}>
-        {data.allContentfulDiscography.edges.map(edge => (
+        {data.allContentfulDiscs.edges.map(edge => (
           <Grid item xs={6} sm={4} md={3}>
             <Disc
               title={edge.node.title ?? ''}
@@ -50,7 +50,7 @@ export default Discography;
 
 export const query = graphql`
   query DiscographyPage($skip: Int!, $limit: Int!) {
-    allContentfulDiscography(
+    allContentfulDiscs(
       sort: { fields: createdAt, order: DESC }
       skip: $skip
       limit: $limit

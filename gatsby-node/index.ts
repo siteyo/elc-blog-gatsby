@@ -90,20 +90,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   // Discography
   await graphql<{
-    allContentfulDiscography: Pick<
-      GatsbyTypes.Query['allContentfulDiscography'],
+    allContentfulDiscs: Pick<
+      GatsbyTypes.Query['allContentfulDiscs'],
       'totalCount'
     >;
   }>(
     `
       {
-        allContentfulDiscography {
+        allContentfulDiscs {
           totalCount
         }
       }
     `,
   ).then(result => {
-    const totalCount = result.data?.allContentfulDiscography?.totalCount ?? 0;
+    const totalCount = result.data?.allContentfulDiscs?.totalCount ?? 0;
     const postsPerPage = 12;
     const numPage = Math.ceil(totalCount / postsPerPage);
     Array.from({ length: numPage }).forEach((_, i) => {
@@ -122,14 +122,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   // Music
   await graphql<{
-    allContentfulDiscography: Pick<
-      GatsbyTypes.Query['allContentfulDiscography'],
+    allContentfulDiscs: Pick<
+      GatsbyTypes.Query['allContentfulDiscs'],
       'edges'
     >;
   }>(
     `
       query CreateMusicPage {
-        allContentfulDiscography(limit: 1000) {
+        allContentfulDiscs(limit: 1000) {
           edges {
             node {
               title
@@ -148,7 +148,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       }
     `,
   ).then(result => {
-    result.data?.allContentfulDiscography?.edges?.forEach(edge => {
+    result.data?.allContentfulDiscs?.edges?.forEach(edge => {
       createPage<MusicPageContext>({
         path: `/music/${edge.node.slug}`,
         component: path.resolve(`./src/templates/Music.tsx`),
