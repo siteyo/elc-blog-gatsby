@@ -1,8 +1,8 @@
 import { GatsbyNode } from 'gatsby';
 import path from 'path';
-import { WorksPageContext } from 'templates/works';
-import { WorkPageContext } from 'templates/work';
-import { DiscographyPageContext } from 'templates/discography';
+import { WorksPageContext } from 'templates/Works';
+import { WorkPageContext } from 'templates/Work';
+import { DiscographyPageContext } from 'templates/Discography';
 import { MusicPageContext } from 'templates/Music';
 
 // eslint-disable-next-line
@@ -38,7 +38,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     Array.from({ length: numPage }).forEach((_, i) => {
       createPage<WorksPageContext>({
         path: i === 0 ? `/works` : `/works/page/${i + 1}`,
-        component: path.resolve('./src/templates/works.tsx'),
+        component: path.resolve('./src/templates/Works.tsx'),
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
@@ -80,7 +80,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     result.data?.allContentfulWorks?.edges?.forEach(edge => {
       createPage<WorkPageContext>({
         path: `/works/${edge.node.slug}`,
-        component: path.resolve('./src/templates/work.tsx'),
+        component: path.resolve('./src/templates/Work.tsx'),
         context: {
           post: edge,
         },
@@ -109,7 +109,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     Array.from({ length: numPage }).forEach((_, i) => {
       createPage<DiscographyPageContext>({
         path: i === 0 ? `/discography` : `/discography/page/${i + 1}`,
-        component: path.resolve(`./src/templates/discography.tsx`),
+        component: path.resolve(`./src/templates/Discography.tsx`),
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
@@ -122,10 +122,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   // Music
   await graphql<{
-    allContentfulDiscs: Pick<
-      GatsbyTypes.Query['allContentfulDiscs'],
-      'edges'
-    >;
+    allContentfulDiscs: Pick<GatsbyTypes.Query['allContentfulDiscs'], 'edges'>;
   }>(
     `
       query CreateMusicPage {
