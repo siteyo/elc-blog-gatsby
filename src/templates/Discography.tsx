@@ -1,9 +1,21 @@
 import React from 'react';
+
+import { Grid, makeStyles } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+
+import { graphql, navigate, PageProps } from 'gatsby';
+
 import Layout from 'components/Layout';
 import Disc from 'components/Disc';
-import { Pagination } from '@material-ui/lab';
-import { graphql, navigate, PageProps } from 'gatsby';
-import { Grid } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  pageRoot: {
+    margin: '1rem 0',
+  },
+  pageButtons: {
+    justifyContent: 'center',
+  },
+});
 
 export interface DiscographyPageContext {
   limit: number;
@@ -15,6 +27,7 @@ export interface DiscographyPageContext {
 const Discography: React.FC<
   PageProps<GatsbyTypes.DiscographyPageQuery, DiscographyPageContext>
 > = ({ data, pageContext }) => {
+  const classes = useStyles();
   const handleChange = (_: React.ChangeEvent<unknown>, page: number) => {
     if (page === 1) {
       navigate(`/discography`);
@@ -37,6 +50,7 @@ const Discography: React.FC<
         ))}
       </Grid>
       <Pagination
+        classes={{ root: classes.pageRoot, ul: classes.pageButtons }}
         page={pageContext.currentPage}
         count={pageContext.numPage}
         color="secondary"
