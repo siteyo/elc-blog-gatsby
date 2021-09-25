@@ -259,8 +259,6 @@ type Site = Node & {
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
-  readonly polyfill: Maybe<Scalars['Boolean']>;
-  readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -314,14 +312,14 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -851,13 +849,13 @@ type ContentfulWorks = ContentfulReference & ContentfulEntry & Node & {
   readonly id: Scalars['ID'];
   readonly node_locale: Scalars['String'];
   readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly body: Maybe<ContentfulWorksBody>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulWorksSys>;
-  readonly description: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -886,8 +884,8 @@ type ContentfulWorksBody = {
 
 type ContentfulWorksSys = {
   readonly type: Maybe<Scalars['String']>;
-  readonly contentType: Maybe<ContentfulWorksSysContentType>;
   readonly revision: Maybe<Scalars['Int']>;
+  readonly contentType: Maybe<ContentfulWorksSysContentType>;
 };
 
 type ContentfulWorksSysContentType = {
@@ -932,6 +930,7 @@ type ContentfulYouTube_updatedAtArgs = {
 
 type ContentfulYouTubeSys = {
   readonly type: Maybe<Scalars['String']>;
+  readonly revision: Maybe<Scalars['Int']>;
   readonly contentType: Maybe<ContentfulYouTubeSysContentType>;
 };
 
@@ -994,6 +993,7 @@ type ContentfulDiscsSongs = {
 
 type ContentfulDiscsSys = {
   readonly type: Maybe<Scalars['String']>;
+  readonly revision: Maybe<Scalars['Int']>;
   readonly contentType: Maybe<ContentfulDiscsSysContentType>;
 };
 
@@ -1046,6 +1046,7 @@ type ContentfulArticlesContent = {
 
 type ContentfulArticlesSys = {
   readonly type: Maybe<Scalars['String']>;
+  readonly revision: Maybe<Scalars['Int']>;
   readonly contentType: Maybe<ContentfulArticlesSysContentType>;
 };
 
@@ -1310,8 +1311,6 @@ type Query_siteArgs = {
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
-  polyfill: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1356,14 +1355,14 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -1448,13 +1447,13 @@ type Query_contentfulWorksArgs = {
   id: Maybe<StringQueryOperatorInput>;
   node_locale: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
+  description: Maybe<StringQueryOperatorInput>;
   slug: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   body: Maybe<ContentfulWorksBodyFilterInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulWorksSysFilterInput>;
-  description: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -2425,8 +2424,6 @@ type SiteFieldsEnum =
   | 'siteMetadata.socialUrl.soundcloud'
   | 'port'
   | 'host'
-  | 'polyfill'
-  | 'pathPrefix'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -2528,8 +2525,6 @@ type SiteFilterInput = {
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
-  readonly polyfill: Maybe<BooleanQueryOperatorInput>;
-  readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2709,81 +2704,6 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePageContextFilterInput = {
-  readonly limit: Maybe<IntQueryOperatorInput>;
-  readonly skip: Maybe<IntQueryOperatorInput>;
-  readonly numPage: Maybe<IntQueryOperatorInput>;
-  readonly currentPage: Maybe<IntQueryOperatorInput>;
-  readonly post: Maybe<SitePageContextPostFilterInput>;
-};
-
-type SitePageContextPostFilterInput = {
-  readonly node: Maybe<SitePageContextPostNodeFilterInput>;
-};
-
-type SitePageContextPostNodeFilterInput = {
-  readonly createdAt: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly body: Maybe<SitePageContextPostNodeBodyFilterInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly released: Maybe<StringQueryOperatorInput>;
-  readonly songs: Maybe<SitePageContextPostNodeSongsFilterInput>;
-  readonly image: Maybe<SitePageContextPostNodeImageFilterInput>;
-};
-
-type SitePageContextPostNodeBodyFilterInput = {
-  readonly raw: Maybe<StringQueryOperatorInput>;
-  readonly references: Maybe<SitePageContextPostNodeBodyReferencesFilterListInput>;
-};
-
-type SitePageContextPostNodeBodyReferencesFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextPostNodeBodyReferencesFilterInput>;
-};
-
-type SitePageContextPostNodeBodyReferencesFilterInput = {
-  readonly _xtypename: Maybe<StringQueryOperatorInput>;
-  readonly contentful_id: Maybe<StringQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeSongsFilterInput = {
-  readonly raw: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeImageFilterInput = {
-  readonly gatsbyImageData: Maybe<SitePageContextPostNodeImageGatsbyImageDataFilterInput>;
-};
-
-type SitePageContextPostNodeImageGatsbyImageDataFilterInput = {
-  readonly images: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput>;
-  readonly layout: Maybe<StringQueryOperatorInput>;
-  readonly backgroundColor: Maybe<StringQueryOperatorInput>;
-  readonly width: Maybe<IntQueryOperatorInput>;
-  readonly height: Maybe<IntQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput = {
-  readonly sources: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput>;
-  readonly fallback: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput>;
-};
-
-type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput>;
-};
-
-type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput = {
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-  readonly type: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput = {
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2876,6 +2796,81 @@ type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
 };
 
+type SitePageContextFilterInput = {
+  readonly limit: Maybe<IntQueryOperatorInput>;
+  readonly skip: Maybe<IntQueryOperatorInput>;
+  readonly numPage: Maybe<IntQueryOperatorInput>;
+  readonly currentPage: Maybe<IntQueryOperatorInput>;
+  readonly post: Maybe<SitePageContextPostFilterInput>;
+};
+
+type SitePageContextPostFilterInput = {
+  readonly node: Maybe<SitePageContextPostNodeFilterInput>;
+};
+
+type SitePageContextPostNodeFilterInput = {
+  readonly createdAt: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly body: Maybe<SitePageContextPostNodeBodyFilterInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly released: Maybe<StringQueryOperatorInput>;
+  readonly songs: Maybe<SitePageContextPostNodeSongsFilterInput>;
+  readonly image: Maybe<SitePageContextPostNodeImageFilterInput>;
+};
+
+type SitePageContextPostNodeBodyFilterInput = {
+  readonly raw: Maybe<StringQueryOperatorInput>;
+  readonly references: Maybe<SitePageContextPostNodeBodyReferencesFilterListInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextPostNodeBodyReferencesFilterInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesFilterInput = {
+  readonly _xtypename: Maybe<StringQueryOperatorInput>;
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeSongsFilterInput = {
+  readonly raw: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageFilterInput = {
+  readonly gatsbyImageData: Maybe<SitePageContextPostNodeImageGatsbyImageDataFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataFilterInput = {
+  readonly images: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput>;
+  readonly layout: Maybe<StringQueryOperatorInput>;
+  readonly backgroundColor: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesFilterInput = {
+  readonly sources: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput>;
+  readonly fallback: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesSourcesFilterInput = {
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeImageGatsbyImageDataImagesFallbackFilterInput = {
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -2927,102 +2922,7 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
-  | 'context.limit'
-  | 'context.skip'
-  | 'context.numPage'
-  | 'context.currentPage'
-  | 'context.post.node.createdAt'
-  | 'context.post.node.title'
-  | 'context.post.node.slug'
-  | 'context.post.node.description'
-  | 'context.post.node.released'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3117,7 +3017,102 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.name'
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
-  | 'pluginCreatorId';
+  | 'pluginCreatorId'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'context.limit'
+  | 'context.skip'
+  | 'context.numPage'
+  | 'context.currentPage'
+  | 'context.post.node.createdAt'
+  | 'context.post.node.title'
+  | 'context.post.node.slug'
+  | 'context.post.node.description'
+  | 'context.post.node.released';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -3134,14 +3129,14 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
-  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
-  readonly pluginCreator: Maybe<SitePluginFilterInput>;
-  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -3771,6 +3766,7 @@ type ContentfulYouTubeFilterInput = {
 
 type ContentfulYouTubeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
   readonly contentType: Maybe<ContentfulYouTubeSysContentTypeFilterInput>;
 };
 
@@ -3786,8 +3782,8 @@ type ContentfulYouTubeSysContentTypeSysFilterInput = {
 
 type ContentfulWorksSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulWorksSysContentTypeFilterInput>;
   readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulWorksSysContentTypeFilterInput>;
 };
 
 type ContentfulWorksSysContentTypeFilterInput = {
@@ -3850,6 +3846,7 @@ type ContentfulWorksFieldsEnum =
   | 'id'
   | 'node_locale'
   | 'title'
+  | 'description'
   | 'slug'
   | 'createdAt'
   | 'body.raw'
@@ -3862,6 +3859,7 @@ type ContentfulWorksFieldsEnum =
   | 'body.references.createdAt'
   | 'body.references.updatedAt'
   | 'body.references.sys.type'
+  | 'body.references.sys.revision'
   | 'body.references.parent.id'
   | 'body.references.parent.children'
   | 'body.references.children'
@@ -3878,11 +3876,10 @@ type ContentfulWorksFieldsEnum =
   | 'spaceId'
   | 'updatedAt'
   | 'sys.type'
+  | 'sys.revision'
   | 'sys.contentType.sys.type'
   | 'sys.contentType.sys.linkType'
   | 'sys.contentType.sys.id'
-  | 'sys.revision'
-  | 'description'
   | 'parent.id'
   | 'parent.parent.id'
   | 'parent.parent.parent.id'
@@ -3983,13 +3980,13 @@ type ContentfulWorksFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly node_locale: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly body: Maybe<ContentfulWorksBodyFilterInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulWorksSysFilterInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -4054,6 +4051,7 @@ type ContentfulYouTubeFieldsEnum =
   | 'createdAt'
   | 'updatedAt'
   | 'sys.type'
+  | 'sys.revision'
   | 'sys.contentType.sys.type'
   | 'sys.contentType.sys.linkType'
   | 'sys.contentType.sys.id'
@@ -4163,6 +4161,7 @@ type ContentfulDiscsSongsFilterInput = {
 
 type ContentfulDiscsSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
   readonly contentType: Maybe<ContentfulDiscsSysContentTypeFilterInput>;
 };
 
@@ -4309,6 +4308,7 @@ type ContentfulDiscsFieldsEnum =
   | 'createdAt'
   | 'updatedAt'
   | 'sys.type'
+  | 'sys.revision'
   | 'sys.contentType.sys.type'
   | 'sys.contentType.sys.linkType'
   | 'sys.contentType.sys.id'
@@ -4442,6 +4442,7 @@ type ContentfulAssetFilterListInput = {
 
 type ContentfulArticlesSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
   readonly contentType: Maybe<ContentfulArticlesSysContentTypeFilterInput>;
 };
 
@@ -4562,6 +4563,7 @@ type ContentfulArticlesFieldsEnum =
   | 'createdAt'
   | 'updatedAt'
   | 'sys.type'
+  | 'sys.revision'
   | 'sys.contentType.sys.type'
   | 'sys.contentType.sys.linkType'
   | 'sys.contentType.sys.id'
@@ -5256,10 +5258,13 @@ type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
 
-type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
+type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title' | 'description'>
+      & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter'>> }
+    )> }> };
 
 type SocialQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5268,6 +5273,31 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
+
+type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
+
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5294,25 +5324,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 }

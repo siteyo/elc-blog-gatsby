@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "elc",
+    description: "",
     menuLinks: [
       { name: 'Works', link: '/works' },
       { name: 'Discography', link: '/discography' },
