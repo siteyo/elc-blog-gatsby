@@ -8,7 +8,7 @@ type Underline = 'none' | 'hover' | 'always';
 type TextLinkColor = 'primary' | 'secondary';
 type TextLinkAlign = 'inherit' | 'left' | 'center' | 'right';
 
-interface LinkTextProps {
+interface TextLinkProps {
   align?: TextLinkAlign;
   color?: TextLinkColor;
   underline?: Underline;
@@ -37,7 +37,7 @@ const useStyle = makeStyles({
 });
 
 /* Component */
-const TextLink: React.VFC<LinkTextProps> = ({
+const TextLink: React.VFC<TextLinkProps> = ({
   variant,
   color,
   underline,
