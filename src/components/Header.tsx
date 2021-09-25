@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Hidden, Divider, makeStyles } from '@material-ui/core';
+
+import { Box, Grid, Hidden, Divider, makeStyles } from '@material-ui/core';
+
 import TextLink from 'components/TextLink';
 import Sns from 'components/Sns';
 import SideMenuBar from 'components/SideMenuBar';
@@ -16,12 +18,15 @@ const useStyles = makeStyles({
   divider: {
     margin: '1rem 0',
   },
+  box: {
+    margin: '2rem 0',
+  },
 });
 
 const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
   const classes = useStyles();
   return (
-    <>
+    <Box className={classes.box}>
       <Grid container justifyContent="space-between">
         <Grid item sm={6}>
           <TextLink variant="h1" color="primary" to="/">
@@ -41,7 +46,7 @@ const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
         <Menu />
       </Hidden>
       <Divider className={classes.divider} />
-    </>
+    </Box>
   );
 };
 
