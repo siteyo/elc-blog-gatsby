@@ -1,9 +1,14 @@
 import React from 'react';
-import { graphql, PageProps, navigate } from 'gatsby';
+
+import { makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
+
+import { graphql, PageProps, navigate } from 'gatsby';
+
 import Layout from 'components/Layout';
 import PostCard from 'components/PostCard';
-import { makeStyles } from '@material-ui/core';
+
+import SEO from 'components/Seo';
 
 const useStyles = makeStyles({
   pageRoot: {
@@ -43,6 +48,7 @@ const Works: React.VFC<
   };
   return (
     <Layout contentMaxWidth="sm">
+      <SEO title="Works" />
       <div>{content}</div>
       <Pagination
         classes={{ root: classes.pageRoot, ul: classes.pageButtons }}

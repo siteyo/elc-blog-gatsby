@@ -1,16 +1,22 @@
 import React from 'react';
-import Layout from 'components/Layout';
+
 import { graphql, PageProps } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+
+import Layout from 'components/Layout';
+import SEO from 'components/Seo';
 
 // Page
 const IndexPage: React.FC<PageProps<GatsbyTypes.HomeImageQuery>> = ({
   data,
 }) => (
   <Layout>
-    {data.contentfulAsset?.gatsbyImageData && (
-      <GatsbyImage image={data.contentfulAsset.gatsbyImageData} alt="" />
-    )}
+    <SEO title="Home" />
+    <>
+      {data.contentfulAsset?.gatsbyImageData && (
+        <GatsbyImage image={data.contentfulAsset.gatsbyImageData} alt="" />
+      )}
+    </>
   </Layout>
 );
 
