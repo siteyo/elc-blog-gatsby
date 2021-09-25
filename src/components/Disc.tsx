@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
-import { GatsbyImage } from 'gatsby-plugin-image';
+
+import { Box, Typography, makeStyles } from '@material-ui/core';
+
 import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 interface DiscProps {
   title: string;
@@ -10,14 +12,30 @@ interface DiscProps {
   image?: Pick<GatsbyTypes.ContentfulAsset, 'gatsbyImageData'>;
 }
 
-const Disc: React.VFC<DiscProps> = ({ title, released, slug, image }) => (
-  <Link to={`/music/${slug}`}>
+const useStyles = makeStyles(theme => ({
+  link: {
+    opacity: 1.0,
+    '&:hover': {
+      opacity: 0.5,
+      color: theme.palette.secondary.main,
+      transitionDuration: '300ms',
+    },
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+}));
+
+const Disc: React.VFC<DiscProps> = ({ title, released, slug, image }) => {
+  const classes = useStyles();
+  return (
     <Box>
-      <GatsbyImage image={image?.gatsbyImageData} alt="" />
-      <Typography variant="body1">{title}</Typography>
-      <Typography variant="body2">{released}</Typography>
+      <Link className={classes.link} to={`/music/${slug}`}>
+        <GatsbyImage image={image?.gatsbyImageData} alt="" />
+        <Typography variant="body1">{title}</Typography>
+        <Typography variant="body2">{released}</Typography>
+      </Link>
     </Box>
-  </Link>
-);
+  );
+};
 
 export default Disc;
