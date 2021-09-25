@@ -40,7 +40,7 @@ const Footer: React.VFC = () => {
         </Grid>
         <Grid item sm={12}>
           <Typography variant="body2" color="secondary">
-            本サイトに掲載されている全てのコンテンツ(記事、画像、音声データ、映像データなど)の無断転載を禁じます。
+            Copyright © equnie, All rights reserved.
           </Typography>
         </Grid>
       </Grid>
