@@ -41,6 +41,7 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
           <IconButton
             href={data.site?.siteMetadata?.socialUrl?.twitter ?? ''}
             target="_blank"
+            rel="noopener"
           >
             <TwitterIcon color="primary" />
           </IconButton>
@@ -49,6 +50,7 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
           <IconButton
             href={data.site?.siteMetadata?.socialUrl?.youtube ?? ''}
             target="_blank"
+            rel="noopener"
           >
             <YouTubeIcon color="primary" />
           </IconButton>
