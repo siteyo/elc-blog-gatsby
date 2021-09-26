@@ -11,6 +11,7 @@ type Meta = {
 
 interface SeoProps {
   description?: string;
+  image?: string;
   lang?: string;
   title: string;
   meta?: Meta[];
@@ -18,11 +19,12 @@ interface SeoProps {
 
 const Seo: React.VFC<SeoProps> = ({
   description,
+  image,
   lang = 'ja',
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
+  const data = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
       query Seo {
         site {
@@ -34,12 +36,20 @@ const Seo: React.VFC<SeoProps> = ({
             }
           }
         }
+        contentfulAsset(title: { eq: "HomeImage" }) {
+          resize(toFormat: WEBP, quality: 50, width: 400) {
+            src
+          }
+        }
       }
     `,
   );
 
-  const metaDescription = description || site?.siteMetadata?.description;
-  const defaultTitle = site?.siteMetadata?.title ?? '';
+  const metaDescription = description || data.site?.siteMetadata?.description;
+  const defaultTitle = data.site?.siteMetadata?.title ?? '';
+  const metaImage = image
+    ? `https:${image}`
+    : `https:${data.contentfulAsset?.resize?.src ?? ''}`;
 
   return (
     <Helmet
@@ -64,12 +74,16 @@ const Seo: React.VFC<SeoProps> = ({
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
         {
           name: `twitter:creator`,
-          content: site?.siteMetadata?.socialUrl?.twitter || ``,
+          content: data.site?.siteMetadata?.socialUrl?.twitter || ``,
         },
         {
           name: `twitter:title`,
