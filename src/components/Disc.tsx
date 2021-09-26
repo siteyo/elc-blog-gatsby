@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       opacity: 0.5,
       color: theme.palette.secondary.main,
-      transitionDuration: '300ms',
+      transitionDuration: theme.transitions.duration.standard,
     },
     color: 'inherit',
     textDecoration: 'none',
