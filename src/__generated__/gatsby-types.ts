@@ -353,9 +353,13 @@ type SitePageContextPostNodeBody = {
 };
 
 type SitePageContextPostNodeBodyReferences = {
-  readonly _xtypename: Maybe<Scalars['String']>;
   readonly contentful_id: Maybe<Scalars['String']>;
   readonly url: Maybe<Scalars['String']>;
+  readonly internal: Maybe<SitePageContextPostNodeBodyReferencesInternal>;
+};
+
+type SitePageContextPostNodeBodyReferencesInternal = {
+  readonly type: Maybe<Scalars['String']>;
 };
 
 type SitePageContextPostNodeSongs = {
@@ -2745,9 +2749,13 @@ type SitePageContextPostNodeBodyReferencesFilterListInput = {
 };
 
 type SitePageContextPostNodeBodyReferencesFilterInput = {
-  readonly _xtypename: Maybe<StringQueryOperatorInput>;
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly url: Maybe<StringQueryOperatorInput>;
+  readonly internal: Maybe<SitePageContextPostNodeBodyReferencesInternalFilterInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesInternalFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContextPostNodeSongsFilterInput = {
@@ -5258,11 +5266,6 @@ type RequestQueryVariables = Exact<{ [key: string]: never; }>;
 
 type RequestQuery = { readonly contentfulArticles: Maybe<{ readonly content: Maybe<Pick<ContentfulArticlesContent, 'raw'>> }> };
 
-type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
-
 type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5270,6 +5273,11 @@ type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
+
+type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
