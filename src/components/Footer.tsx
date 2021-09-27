@@ -40,7 +40,7 @@ const Footer: React.VFC = () => {
         </Grid>
         <Grid item sm={12}>
           <Typography variant="body2" color="secondary">
-            Copyright © equnie, All rights reserved.
+            Copyright © elc, All rights reserved.
           </Typography>
         </Grid>
       </Grid>
