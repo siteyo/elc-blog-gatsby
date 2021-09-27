@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useStaticQuery, graphql } from 'gatsby';
 import { Container, CssBaseline } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from 'styles/theme';
+
+import theme from 'styles/Theme';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -10,6 +12,7 @@ import Footer from 'components/Footer';
 interface LayoutProps {
   contentMaxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   children?: React.ReactChild | React.ReactChild[];
+  location?: Location;
 }
 
 /* Component */
