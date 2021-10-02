@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://equnie.netlify.app",
     title: "elc",
-    description: "",
+    description: "ひとり音楽アカウント elc のホームページです。",
     menuLinks: [
       { name: 'Works', link: '/works' },
       { name: 'Discography', link: '/discography' },
