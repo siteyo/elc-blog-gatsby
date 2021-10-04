@@ -80,6 +80,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
                       type
                     }
                   }
+                  ... on ContentfulDiscs {
+                    contentful_id
+                    title
+                    description
+                    slug
+                    image {
+                      fixed {
+                        srcWebp
+                      }
+                    }
+                    internal {
+                      type
+                    }
+                  }
                 }
               }
             }

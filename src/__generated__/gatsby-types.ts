@@ -359,10 +359,19 @@ type SitePageContextPostNodeBodyReferences = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly image: Maybe<SitePageContextPostNodeBodyReferencesImage>;
 };
 
 type SitePageContextPostNodeBodyReferencesInternal = {
   readonly type: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPostNodeBodyReferencesImage = {
+  readonly fixed: Maybe<SitePageContextPostNodeBodyReferencesImageFixed>;
+};
+
+type SitePageContextPostNodeBodyReferencesImageFixed = {
+  readonly srcWebp: Maybe<Scalars['String']>;
 };
 
 type SitePageContextPostNodeSongs = {
@@ -888,10 +897,10 @@ type ContentfulWorks_updatedAtArgs = {
 
 type ContentfulWorksBody = {
   readonly raw: Maybe<Scalars['String']>;
-  readonly references: Maybe<ReadonlyArray<Maybe<ContentfulWorksContentfulYouTubeUnion>>>;
+  readonly references: Maybe<ReadonlyArray<Maybe<ContentfulDiscsContentfulWorksContentfulYouTubeUnion>>>;
 };
 
-type ContentfulWorksContentfulYouTubeUnion = ContentfulWorks | ContentfulYouTube;
+type ContentfulDiscsContentfulWorksContentfulYouTubeUnion = ContentfulDiscs | ContentfulWorks | ContentfulYouTube;
 
 type ContentfulWorksSys = {
   readonly type: Maybe<Scalars['String']>;
@@ -2760,10 +2769,19 @@ type SitePageContextPostNodeBodyReferencesFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly image: Maybe<SitePageContextPostNodeBodyReferencesImageFilterInput>;
 };
 
 type SitePageContextPostNodeBodyReferencesInternalFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesImageFilterInput = {
+  readonly fixed: Maybe<SitePageContextPostNodeBodyReferencesImageFixedFilterInput>;
+};
+
+type SitePageContextPostNodeBodyReferencesImageFixedFilterInput = {
+  readonly srcWebp: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContextPostNodeSongsFilterInput = {
@@ -5259,14 +5277,6 @@ type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
-type SocialQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title'>
-      & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
-    )> }> };
-
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5274,6 +5284,14 @@ type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter'>> }
     )> }>, readonly contentfulAsset: Maybe<{ readonly resize: Maybe<Pick<ContentfulResize, 'src'>> }> };
+
+type SocialQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title'>
+      & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
+    )> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

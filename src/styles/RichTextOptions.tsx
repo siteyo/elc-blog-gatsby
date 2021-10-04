@@ -82,6 +82,18 @@ const options: Options = {
           </Box>
         );
       }
+      if (data.target?.internal?.type === 'ContentfulDiscs') {
+        return (
+          <Box style={{ margin: '10px' }}>
+            <LinkCard
+              title={data.target?.title}
+              description={data.target?.description}
+              to={`/music/${data.target?.slug}`}
+              image={`https:${data.target?.image?.fixed?.srcWebp}`}
+            />
+          </Box>
+        );
+      }
       return <h3>Entry</h3>;
     },
 
