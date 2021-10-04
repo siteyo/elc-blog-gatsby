@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     margin: '1rem 0',
   },
   box: {
-    margin: '2rem 0',
+    padding: '2rem 0 0',
   },
 });
 
