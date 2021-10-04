@@ -71,6 +71,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
                       type
                     }
                   }
+                  ... on ContentfulWorks {
+                    contentful_id
+                    title
+                    description
+                    slug
+                    internal {
+                      type
+                    }
+                  }
                 }
               }
             }

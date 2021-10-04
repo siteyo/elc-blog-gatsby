@@ -356,6 +356,9 @@ type SitePageContextPostNodeBodyReferences = {
   readonly contentful_id: Maybe<Scalars['String']>;
   readonly url: Maybe<Scalars['String']>;
   readonly internal: Maybe<SitePageContextPostNodeBodyReferencesInternal>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
 };
 
 type SitePageContextPostNodeBodyReferencesInternal = {
@@ -885,8 +888,10 @@ type ContentfulWorks_updatedAtArgs = {
 
 type ContentfulWorksBody = {
   readonly raw: Maybe<Scalars['String']>;
-  readonly references: Maybe<ReadonlyArray<Maybe<ContentfulYouTube>>>;
+  readonly references: Maybe<ReadonlyArray<Maybe<ContentfulWorksContentfulYouTubeUnion>>>;
 };
+
+type ContentfulWorksContentfulYouTubeUnion = ContentfulWorks | ContentfulYouTube;
 
 type ContentfulWorksSys = {
   readonly type: Maybe<Scalars['String']>;
@@ -2752,6 +2757,9 @@ type SitePageContextPostNodeBodyReferencesFilterInput = {
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly url: Maybe<StringQueryOperatorInput>;
   readonly internal: Maybe<SitePageContextPostNodeBodyReferencesInternalFilterInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContextPostNodeBodyReferencesInternalFilterInput = {
@@ -3759,41 +3767,6 @@ type ContentfulAssetSortInput = {
 
 type ContentfulWorksBodyFilterInput = {
   readonly raw: Maybe<StringQueryOperatorInput>;
-  readonly references: Maybe<ContentfulYouTubeFilterListInput>;
-};
-
-type ContentfulYouTubeFilterListInput = {
-  readonly elemMatch: Maybe<ContentfulYouTubeFilterInput>;
-};
-
-type ContentfulYouTubeFilterInput = {
-  readonly contentful_id: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly sys: Maybe<ContentfulYouTubeSysFilterInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type ContentfulYouTubeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulYouTubeSysContentTypeFilterInput>;
-};
-
-type ContentfulYouTubeSysContentTypeFilterInput = {
-  readonly sys: Maybe<ContentfulYouTubeSysContentTypeSysFilterInput>;
-};
-
-type ContentfulYouTubeSysContentTypeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly linkType: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
 };
 
 type ContentfulWorksSysFilterInput = {
@@ -3866,29 +3839,6 @@ type ContentfulWorksFieldsEnum =
   | 'slug'
   | 'createdAt'
   | 'body.raw'
-  | 'body.references'
-  | 'body.references.contentful_id'
-  | 'body.references.id'
-  | 'body.references.node_locale'
-  | 'body.references.url'
-  | 'body.references.spaceId'
-  | 'body.references.createdAt'
-  | 'body.references.updatedAt'
-  | 'body.references.sys.type'
-  | 'body.references.sys.revision'
-  | 'body.references.parent.id'
-  | 'body.references.parent.children'
-  | 'body.references.children'
-  | 'body.references.children.id'
-  | 'body.references.children.children'
-  | 'body.references.internal.content'
-  | 'body.references.internal.contentDigest'
-  | 'body.references.internal.description'
-  | 'body.references.internal.fieldOwners'
-  | 'body.references.internal.ignoreType'
-  | 'body.references.internal.mediaType'
-  | 'body.references.internal.owner'
-  | 'body.references.internal.type'
   | 'spaceId'
   | 'updatedAt'
   | 'sys.type'
@@ -4011,6 +3961,22 @@ type ContentfulWorksFilterInput = {
 type ContentfulWorksSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulWorksFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type ContentfulYouTubeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulYouTubeSysContentTypeFilterInput>;
+};
+
+type ContentfulYouTubeSysContentTypeFilterInput = {
+  readonly sys: Maybe<ContentfulYouTubeSysContentTypeSysFilterInput>;
+};
+
+type ContentfulYouTubeSysContentTypeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly linkType: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
 };
 
 type ContentfulYouTubeConnection = {
@@ -4164,6 +4130,20 @@ type ContentfulYouTubeGroupConnection = {
   readonly pageInfo: PageInfo;
   readonly field: Scalars['String'];
   readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type ContentfulYouTubeFilterInput = {
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly node_locale: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly sys: Maybe<ContentfulYouTubeSysFilterInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type ContentfulYouTubeSortInput = {
@@ -5279,14 +5259,6 @@ type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
-type SeoQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title' | 'description'>
-      & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter'>> }
-    )> }>, readonly contentfulAsset: Maybe<{ readonly resize: Maybe<Pick<ContentfulResize, 'src'>> }> };
-
 type SocialQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5294,6 +5266,14 @@ type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
     )> }> };
+
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title' | 'description'>
+      & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter'>> }
+    )> }>, readonly contentfulAsset: Maybe<{ readonly resize: Maybe<Pick<ContentfulResize, 'src'>> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

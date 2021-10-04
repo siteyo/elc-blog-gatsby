@@ -7,6 +7,8 @@ import { Options } from '@contentful/rich-text-react-renderer';
 
 import ReactPlayer from 'react-player';
 
+import LinkCard from 'components/LinkCard';
+
 const options: Options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (_, children) => (
@@ -64,6 +66,18 @@ const options: Options = {
               controls
               width="100%"
               height="100%"
+            />
+          </Box>
+        );
+      }
+      if (data.target?.internal?.type === 'ContentfulWorks') {
+        return (
+          <Box style={{ margin: '10px' }}>
+            <LinkCard
+              title={data.target?.title}
+              description={data.target?.description}
+              to={`/works/${data.target?.slug}`}
+              image=""
             />
           </Box>
         );
