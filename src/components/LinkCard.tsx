@@ -23,6 +23,14 @@ const useStyles = makeStyles({
     color: 'primary',
     borderBottom: 'none',
   },
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  media: {
+    width: 80,
+  },
 });
 
 const LinkCard: React.VFC<LinkCardProps> = ({
@@ -34,7 +42,7 @@ const LinkCard: React.VFC<LinkCardProps> = ({
   const classes = useStyles();
   return (
     <Link className={classes.link} to={to}>
-      <Card variant="outlined">
+      <Card className={classes.card} variant="outlined">
         <CardContent>
           <Typography variant="h5" color="primary">
             {title}
@@ -43,7 +51,11 @@ const LinkCard: React.VFC<LinkCardProps> = ({
             {description}
           </Typography>
         </CardContent>
-        <CardMedia component="img" image={image} />
+        {image ? (
+          <CardMedia className={classes.media} component="img" image={image} />
+        ) : (
+          ''
+        )}
       </Card>
     </Link>
   );
