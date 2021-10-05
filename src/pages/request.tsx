@@ -6,12 +6,14 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import Layout from 'components/Layout';
 import SEO from 'components/Seo';
 
+import options from 'styles/RichTextOptions';
+
 const Request: React.VFC<PageProps<GatsbyTypes.RequestQuery>> = ({ data }) => {
   const content = data.contentfulArticles?.content;
   return (
     <Layout contentMaxWidth="sm">
       <SEO title="Mix request" />
-      <>{content && renderRichText(content)}</>
+      <>{content && renderRichText(content, options)}</>
     </Layout>
   );
 };

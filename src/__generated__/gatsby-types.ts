@@ -5251,7 +5251,13 @@ type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 type BioQuery = { readonly contentfulArticles: Maybe<(
     Pick<ContentfulArticles, 'slug' | 'title'>
-    & { readonly content: Maybe<Pick<ContentfulArticlesContent, 'raw'>> }
+    & { readonly content: Maybe<(
+      Pick<ContentfulArticlesContent, 'raw'>
+      & { readonly references: Maybe<ReadonlyArray<Maybe<(
+        { readonly __typename: 'ContentfulAsset' }
+        & Pick<ContentfulAsset, 'contentful_id' | 'gatsbyImageData'>
+      )>>> }
+    )> }
   )> };
 
 type HomeImageQueryVariables = Exact<{ [key: string]: never; }>;

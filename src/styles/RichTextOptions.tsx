@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { GatsbyImage } from 'gatsby-plugin-image';
+
 import { Box, Typography, Divider, Link } from '@material-ui/core';
 
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
@@ -95,6 +97,10 @@ const options: Options = {
         );
       }
       return <h3>Entry</h3>;
+    },
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      const { data } = node;
+      return <GatsbyImage image={data.target?.gatsbyImageData} />;
     },
 
     [INLINES.HYPERLINK]: (node, children) => {
