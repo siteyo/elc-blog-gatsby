@@ -1,8 +1,13 @@
 import React from 'react';
+
 import { PageProps } from 'gatsby';
-import Layout from 'components/Layout';
-import { Typography, Box } from '@material-ui/core';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
+
+import { Typography, Box } from '@material-ui/core';
+
+import Layout from 'components/Layout';
+import ShareButtons from 'components/ShareButtons';
+
 import options from 'styles/RichTextOptions';
 
 export interface WorkPageContext {
@@ -11,6 +16,7 @@ export interface WorkPageContext {
 
 const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
   pageContext,
+  location,
 }) => {
   const { body } = pageContext.post.node;
   return (
@@ -21,7 +27,10 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
       <Typography variant="h6" color="secondary">
         {pageContext.post.node.createdAt}
       </Typography>
-      <Box>{body && renderRichText(body, options)}</Box>
+      <Box style={{ margin: '1rem 0' }}>
+        {body && renderRichText(body, options)}
+      </Box>
+      <ShareButtons url={location.href} />
     </Layout>
   );
 };
