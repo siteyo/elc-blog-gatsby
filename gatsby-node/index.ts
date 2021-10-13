@@ -65,7 +65,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
                 raw
                 references {
                   ... on ContentfulYouTube {
-                    contentful_id
+                    __typename
                     url
                     internal {
                       type
@@ -73,6 +73,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
                   }
                   ... on ContentfulWorks {
                     contentful_id
+                    __typename
                     title
                     description
                     slug
