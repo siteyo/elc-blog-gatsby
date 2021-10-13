@@ -63,8 +63,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
               slug
               body {
                 raw
-                references {
-                }
               }
             }
           }
