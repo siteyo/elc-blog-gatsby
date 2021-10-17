@@ -63,6 +63,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
               slug
               body {
                 raw
+                references {
+                  ... on ContentfulYouTube {
+                    contentful_id
+                    url
+                    internal {
+                      type
+                    }
+                  }
+                }
               }
             }
           }
