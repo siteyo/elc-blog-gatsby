@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Box, IconButton, makeStyles } from '@material-ui/core';
+import { Box, IconButton, Grid } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
@@ -8,16 +8,7 @@ interface SnsProps {
   className?: string;
 }
 
-const useStyles = makeStyles({
-  list: {
-    listStyle: 'none',
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
-
 const Sns: React.VFC<SnsProps> = ({ className }) => {
-  const classes = useStyles();
   const data = useStaticQuery<GatsbyTypes.SocialQuery>(
     graphql`
       query Social {
@@ -36,8 +27,8 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
 
   return (
     <Box className={className ?? ''}>
-      <ul className={classes.list}>
-        <li>
+      <Grid container justifyContent="space-around">
+        <Grid item>
           <IconButton
             href={data.site?.siteMetadata?.socialUrl?.twitter ?? ''}
             target="_blank"
@@ -45,8 +36,8 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
           >
             <TwitterIcon color="primary" />
           </IconButton>
-        </li>
-        <li>
+        </Grid>
+        <Grid item>
           <IconButton
             href={data.site?.siteMetadata?.socialUrl?.youtube ?? ''}
             target="_blank"
@@ -54,8 +45,8 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
           >
             <YouTubeIcon color="primary" />
           </IconButton>
-        </li>
-      </ul>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
