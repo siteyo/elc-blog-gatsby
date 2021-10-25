@@ -1,5 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+
 import { Link } from 'gatsby';
+
 import { Typography, makeStyles } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
 

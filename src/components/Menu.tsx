@@ -1,10 +1,30 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import * as React from 'react';
+
 import { useStaticQuery, graphql } from 'gatsby';
+
+import { Grid, GridJustification } from '@material-ui/core';
+
 import TextLink from 'components/TextLink';
 
+/* Interface */
+type Underline = 'none' | 'hover' | 'always';
+type LinkColor = 'primary' | 'secondary';
+type LinkAlign = 'inherit' | 'left' | 'center' | 'right';
+
+interface MenuProps {
+  align: LinkAlign;
+  color: LinkColor;
+  underline: Underline;
+  justifyContent: GridJustification;
+}
+
 /* Component */
-const Menu: React.VFC = () => {
+const Menu: React.VFC<MenuProps> = ({
+  align,
+  color,
+  underline,
+  justifyContent,
+}) => {
   const data = useStaticQuery<GatsbyTypes.MenuLinksQuery>(
     graphql`
       query MenuLinks {
@@ -20,14 +40,14 @@ const Menu: React.VFC = () => {
     `,
   );
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent={justifyContent}>
       {data.site?.siteMetadata?.menuLinks?.map(menu => (
         <Grid item xs={12} sm={2} key={menu?.name}>
           <TextLink
-            align="center"
+            align={align}
             variant="h5"
-            color="primary"
-            underline="hover"
+            color={color}
+            underline={underline}
             to={menu?.link ?? '/'}
           >
             {menu?.name ?? ''}
