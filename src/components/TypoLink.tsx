@@ -7,12 +7,12 @@ import { Variant } from '@material-ui/core/styles/createTypography';
 
 /* Interface */
 type Underline = 'none' | 'hover' | 'always';
-type TextLinkColor = 'primary' | 'secondary';
-type TextLinkAlign = 'inherit' | 'left' | 'center' | 'right';
+type LinkColor = 'primary' | 'secondary';
+type LinkAlign = 'inherit' | 'left' | 'center' | 'right';
 
-interface TextLinkProps {
-  align?: TextLinkAlign;
-  color?: TextLinkColor;
+interface TypoLinkProps {
+  align?: LinkAlign;
+  color?: LinkColor;
   underline?: Underline;
   variant?: 'inherit' | Variant;
   to: string;
@@ -39,7 +39,7 @@ const useStyle = makeStyles({
 });
 
 /* Component */
-const TextLink: React.VFC<TextLinkProps> = ({
+const TypoLink: React.VFC<TypoLinkProps> = ({
   variant,
   color,
   underline,
@@ -57,4 +57,4 @@ const TextLink: React.VFC<TextLinkProps> = ({
   );
 };
 
-export default TextLink;
+export default TypoLink;
