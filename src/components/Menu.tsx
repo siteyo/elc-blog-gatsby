@@ -3,8 +3,9 @@ import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import { Grid, GridJustification } from '@material-ui/core';
+import { Variant } from '@material-ui/core/styles/createTypography';
 
-import TextLink from 'components/TextLink';
+import TypoLink from 'components/TypoLink';
 
 /* Interface */
 type Underline = 'none' | 'hover' | 'always';
@@ -12,6 +13,7 @@ type LinkColor = 'primary' | 'secondary';
 type LinkAlign = 'inherit' | 'left' | 'center' | 'right';
 
 interface MenuProps {
+  variant: 'inherit' | Variant;
   align: LinkAlign;
   color: LinkColor;
   underline: Underline;
@@ -20,6 +22,7 @@ interface MenuProps {
 
 /* Component */
 const Menu: React.VFC<MenuProps> = ({
+  variant,
   align,
   color,
   underline,
@@ -43,15 +46,15 @@ const Menu: React.VFC<MenuProps> = ({
     <Grid container justifyContent={justifyContent}>
       {data.site?.siteMetadata?.menuLinks?.map(menu => (
         <Grid item xs={12} sm={2} key={menu?.name}>
-          <TextLink
+          <TypoLink
             align={align}
-            variant="h5"
+            variant={variant}
             color={color}
             underline={underline}
             to={menu?.link ?? '/'}
           >
             {menu?.name ?? ''}
-          </TextLink>
+          </TypoLink>
         </Grid>
       ))}
     </Grid>

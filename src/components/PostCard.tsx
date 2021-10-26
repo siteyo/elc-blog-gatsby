@@ -8,7 +8,7 @@ import {
   Divider,
 } from '@material-ui/core';
 
-import TextLink from 'components/TextLink';
+import TypoLink from 'components/TypoLink';
 
 /* Styles */
 const useStyles = makeStyles(theme =>
@@ -47,14 +47,14 @@ const PostCard: React.VFC<PostCardProps> = ({
     <Box>
       <Grid className={classes.container} container>
         <Grid item sm={9} xs={12}>
-          <TextLink
+          <TypoLink
             variant="h5"
             color="primary"
             to={`/works/${slug}`}
             underline="hover"
           >
             {title}
-          </TextLink>
+          </TypoLink>
         </Grid>
         <Grid item sm={3} xs={12}>
           <Typography variant="h6" color="primary">

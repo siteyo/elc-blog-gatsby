@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Grid, Hidden, Divider, makeStyles } from '@material-ui/core';
 
-import TextLink from 'components/TextLink';
+import TypoLink from 'components/TypoLink';
 import Sns from 'components/Sns';
 import SideMenuBar from 'components/SideMenuBar';
 import Menu from 'components/Menu';
@@ -29,9 +29,9 @@ const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
     <Box className={classes.box}>
       <Grid container justifyContent="space-between">
         <Grid item sm={6}>
-          <TextLink variant="h1" color="primary" to="/">
+          <TypoLink variant="h1" color="primary" to="/">
             {title}
-          </TextLink>
+          </TypoLink>
         </Grid>
         <Grid item sm={2}>
           <Hidden xsDown>
