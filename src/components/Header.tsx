@@ -1,17 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 
-import { Box, Grid, Hidden, Divider, makeStyles } from '@material-ui/core';
+import { Box, Grid, Hidden, makeStyles } from '@material-ui/core';
 
 import TypoLink from 'components/TypoLink';
 import Sns from 'components/Sns';
-import SideMenuBar from 'components/SideMenuBar';
-import Menu from 'components/Menu';
 
 interface HeaderProps {
   title: string;
-  menuLinks: readonly GatsbyTypes.Maybe<
-    Pick<GatsbyTypes.SiteSiteMetadataMenuLinks, 'link' | 'name'>
-  >[];
 }
 
 const useStyles = makeStyles({
@@ -23,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
+const Header: React.VFC<HeaderProps> = ({ title }) => {
   const classes = useStyles();
   return (
     <Box className={classes.box}>
@@ -37,15 +32,8 @@ const Header: React.VFC<HeaderProps> = ({ title, menuLinks }) => {
           <Hidden xsDown>
             <Sns />
           </Hidden>
-          <Hidden smUp>
-            <SideMenuBar title={title} menuLinks={menuLinks} />
-          </Hidden>
         </Grid>
       </Grid>
-      <Hidden xsDown>
-        <Menu />
-      </Hidden>
-      <Divider className={classes.divider} />
     </Box>
   );
 };

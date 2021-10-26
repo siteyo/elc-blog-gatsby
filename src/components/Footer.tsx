@@ -1,30 +1,14 @@
 import React from 'react';
-import {
-  Grid,
-  Divider,
-  IconButton,
-  Hidden,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import { Grid, IconButton, Hidden, Typography } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-
-/* Styles */
-const useStyles = makeStyles({
-  divider: {
-    margin: '1rem 0',
-  },
-});
 
 /* Component */
 const Footer: React.VFC = () => {
-  const classes = useStyles();
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
     <>
-      <Divider className={classes.divider} />
       <Grid container justifyContent="space-between">
         <Hidden xsDown>
           <Grid item sm={12} style={{ textAlign: 'center' }}>
