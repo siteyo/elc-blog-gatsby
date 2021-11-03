@@ -25,7 +25,12 @@ export default IndexPage;
 export const query = graphql`
   query HomeImage {
     contentfulAsset(title: { eq: "HomeImage" }) {
-      gatsbyImageData(formats: WEBP, layout: FULL_WIDTH, placeholder: BLURRED)
+      gatsbyImageData(
+        formats: WEBP
+        layout: CONSTRAINED
+        placeholder: BLURRED
+        height: 300
+      )
     }
   }
 `;
