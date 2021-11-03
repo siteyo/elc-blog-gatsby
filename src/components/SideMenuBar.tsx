@@ -1,7 +1,7 @@
 import React from 'react';
 import { Drawer, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import TextLink from 'components/TextLink';
+import TypoLink from 'components/TypoLink';
 import Sns from 'components/Sns';
 
 /* Interfaces */
@@ -35,16 +35,16 @@ const SideMenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
         <MenuIcon color="primary" />
       </IconButton>
       <Drawer open={mobileOpen} anchor="right" onClose={handleDrawerToggle}>
-        <TextLink variant="h1" to="/">
+        <TypoLink variant="h1" to="/">
           {title}
-        </TextLink>
+        </TypoLink>
         <Sns />
         <ul className={classes.drawerContainer}>
           {menuLinks.map(menu => (
             <li className={classes.drawerItem} key={menu?.name}>
-              <TextLink variant="h4" underline="always" to={menu?.link ?? '/'}>
+              <TypoLink variant="h4" underline="always" to={menu?.link ?? '/'}>
                 {menu?.name ?? ''}
-              </TextLink>
+              </TypoLink>
             </li>
           ))}
         </ul>
