@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { useStaticQuery, graphql } from 'gatsby';
-import { Container, CssBaseline } from '@material-ui/core';
+import { Box, Container, CssBaseline, Hidden } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import theme from 'styles/Theme';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Menu from 'components/Menu';
 
 /* Interfaces */
 interface LayoutProps {
@@ -36,12 +37,20 @@ const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
-        <Header
-          title={data.site?.siteMetadata?.title ?? ''}
-          menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
-        />
+        <Header title={data.site?.siteMetadata?.title ?? ''} />
+        <Hidden xsDown>
+          <Menu
+            variant="body1"
+            color="primary"
+            underline="hover"
+            justifyContent="space-around"
+            align="center"
+          />
+        </Hidden>
         <Container maxWidth={contentMaxWidth}>
-          <div>{children}</div>
+          <Box my={5}>
+            <div>{children}</div>
+          </Box>
         </Container>
         <Footer />
       </Container>
