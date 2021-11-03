@@ -7,6 +7,7 @@ import {
   Container,
   CssBaseline,
   Hidden,
+  Grid,
   makeStyles,
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -21,11 +22,14 @@ interface HomeLayoutProps {
 }
 
 const useStyles = makeStyles({
-  wrapper: {
-    position: 'absolute',
+  container: {
+    height: '100vh',
+    minHeight: '50rem',
+  },
+  inner: {
+    position: 'relative',
     top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translateY(-50%)',
   },
 });
 
@@ -49,28 +53,32 @@ const HomeLayout: React.VFC<HomeLayoutProps> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="md" className={classes.wrapper}>
-        <Box>{children}</Box>
-        <Header title={data.site?.siteMetadata?.title ?? ''} />
-        <Hidden xsDown>
-          <Menu
-            variant="body1"
-            color="primary"
-            underline="hover"
-            justifyContent="space-around"
-            align="center"
-          />
-        </Hidden>
-        <Hidden smUp>
-          <Menu
-            variant="h3"
-            color="primary"
-            underline="hover"
-            justifyContent="space-around"
-            align="right"
-          />
-        </Hidden>
-        <Footer />
+      <Container className={classes.container} maxWidth="md">
+        <Box className={classes.inner}>
+          <Grid container justifyContent="flex-end">
+            <Grid item>{children}</Grid>
+          </Grid>
+          <Header title={data.site?.siteMetadata?.title ?? ''} />
+          <Hidden xsDown>
+            <Menu
+              variant="body1"
+              color="primary"
+              underline="hover"
+              justifyContent="space-around"
+              align="center"
+            />
+          </Hidden>
+          <Hidden smUp>
+            <Menu
+              variant="h3"
+              color="primary"
+              underline="hover"
+              justifyContent="space-around"
+              align="right"
+            />
+          </Hidden>
+          <Footer />
+        </Box>
       </Container>
     </ThemeProvider>
   );
