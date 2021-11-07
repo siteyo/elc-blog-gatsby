@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Typography,
   Grid,
@@ -8,7 +8,7 @@ import {
   Divider,
 } from '@material-ui/core';
 
-import TypoLink from 'components/TypoLink';
+import { TypoLink } from 'components/TypoLink';
 
 /* Styles */
 const useStyles = makeStyles(theme =>
@@ -72,4 +72,4 @@ const PostCard: React.VFC<PostCardProps> = ({
   );
 };
 
-export default PostCard;
+export { PostCard };

@@ -1,13 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 
 import { useStaticQuery, graphql } from 'gatsby';
 import { Box, Container, CssBaseline, Hidden } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import theme from 'styles/Theme';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import Menu from 'components/Menu';
+import { theme } from 'styles/Theme';
+import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
+import { Menu } from 'components/Menu';
+import { SideMenuBar } from 'components/SideMenuBar';
 
 /* Interfaces */
 interface LayoutProps {
@@ -37,6 +38,10 @@ const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
+        <SideMenuBar
+          title={data.site?.siteMetadata?.title ?? ''}
+          menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
+        />
         <Header title={data.site?.siteMetadata?.title ?? ''} />
         <Hidden xsDown>
           <Menu
@@ -58,4 +63,4 @@ const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
   );
 };
 
-export default Layout;
+export { Layout };

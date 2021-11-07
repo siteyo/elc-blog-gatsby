@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Helmet } from 'react-helmet';
 
@@ -98,4 +98,4 @@ const Seo: React.VFC<SeoProps> = ({
   );
 };
 
-export default Seo;
+export { Seo };

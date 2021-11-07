@@ -36,6 +36,13 @@ module.exports = {
         'react/prop-types': 'off',
       },
     },
+    {
+      files: ['src/pages/*.tsx', 'src/templates/*.tsx'],
+      rules: {
+        'import/prefer-default-export': 'error',
+        'import/no-default-export': 'off',
+      },
+    },
   ],
   rules: {
     'no-use-before-define': 'off',
@@ -45,6 +52,8 @@ module.exports = {
         extensions: ['.jsx', '.tsx'],
       },
     ],
+    'import/prefer-default-export': 'off',
+    'import/no-default-export': 'error',
     'import/extensions': [
       'error',
       'ignorePackages',

@@ -9,9 +9,9 @@ import { Options } from '@contentful/rich-text-react-renderer';
 
 import ReactPlayer from 'react-player';
 
-import LinkCard from 'components/LinkCard';
+import { LinkCard } from 'components/LinkCard';
 
-const options: Options = {
+const generalOptions: Options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (_, children) => (
       <Typography variant="body1" color="primary">
@@ -126,4 +126,4 @@ const options: Options = {
   },
 };
 
-export default options;
+export { generalOptions };

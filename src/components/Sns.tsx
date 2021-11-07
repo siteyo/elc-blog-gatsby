@@ -1,5 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+
 import { useStaticQuery, graphql } from 'gatsby';
+
 import { Box, IconButton, Grid } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
@@ -51,4 +53,4 @@ const Sns: React.VFC<SnsProps> = ({ className }) => {
   );
 };
 
-export default Sns;
+export { Sns };

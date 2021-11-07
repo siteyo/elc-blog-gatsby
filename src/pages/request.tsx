@@ -1,19 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 
 import { PageProps, graphql } from 'gatsby';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
-import Layout from 'components/Layout';
-import SEO from 'components/Seo';
+import { Layout } from 'components/Layout';
+import { Seo } from 'components/Seo';
 
-import options from 'styles/RichTextOptions';
+import { generalOptions } from 'styles/RichTextOptions';
 
 const Request: React.VFC<PageProps<GatsbyTypes.RequestQuery>> = ({ data }) => {
   const content = data.contentfulArticles?.content;
   return (
     <Layout contentMaxWidth="sm">
-      <SEO title="Mix request" />
-      <>{content && renderRichText(content, options)}</>
+      <Seo title="Mix request" />
+      <>{content && renderRichText(content, generalOptions)}</>
     </Layout>
   );
 };

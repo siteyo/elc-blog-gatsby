@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@material-ui/core';
 
-const theme = createTheme({
+const baseTheme = createTheme({
   palette: {
     primary: {
       main: '#2d3142',
@@ -14,6 +14,6 @@ const theme = createTheme({
   },
 });
 
-export default responsiveFontSizes(theme, {
+export const theme = responsiveFontSizes(baseTheme, {
   breakpoints: ['md', 'xl'],
 });

@@ -57,4 +57,4 @@ const TypoLink: React.VFC<TypoLinkProps> = ({
   );
 };
 
-export default TypoLink;
+export { TypoLink };

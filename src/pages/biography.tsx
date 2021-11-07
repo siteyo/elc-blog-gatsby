@@ -1,19 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 
 import { graphql, PageProps } from 'gatsby';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 
-import Layout from 'components/Layout';
-import SEO from 'components/Seo';
+import { Layout } from 'components/Layout';
+import { Seo } from 'components/Seo';
 
-import options from 'styles/RichTextOptions';
+import { generalOptions } from 'styles/RichTextOptions';
 
 const Biography: React.FC<PageProps<GatsbyTypes.BioQuery>> = ({ data }) => {
   const content = data.contentfulArticles?.content;
   return (
     <Layout contentMaxWidth="sm">
-      <SEO title="Biography" />
-      <>{content && renderRichText(content, options)}</>
+      <Seo title="Biography" />
+      <>{content && renderRichText(content, generalOptions)}</>
     </Layout>
   );
 };

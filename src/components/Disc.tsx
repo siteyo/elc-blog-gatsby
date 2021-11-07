@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Box, Typography, makeStyles } from '@material-ui/core';
 
@@ -38,4 +38,4 @@ const Disc: React.VFC<DiscProps> = ({ title, released, slug, image }) => {
   );
 };
 
-export default Disc;
+export { Disc };

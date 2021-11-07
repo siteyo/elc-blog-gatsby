@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Grid, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 import { graphql, navigate, PageProps } from 'gatsby';
 
-import Layout from 'components/Layout';
-import Disc from 'components/Disc';
-import SEO from 'components/Seo';
+import { Layout } from 'components/Layout';
+import { Disc } from 'components/Disc';
+import { Seo } from 'components/Seo';
 
 const useStyles = makeStyles({
   pageRoot: {
@@ -38,7 +38,7 @@ const Discography: React.FC<
   };
   return (
     <Layout>
-      <SEO title="Discography" />
+      <Seo title="Discography" />
       <Grid container spacing={8}>
         {data.allContentfulDiscs.edges.map(edge => (
           <Grid item xs={6} sm={4} md={3}>

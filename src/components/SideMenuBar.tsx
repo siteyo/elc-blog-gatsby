@@ -1,8 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+
 import { Drawer, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import TypoLink from 'components/TypoLink';
-import Sns from 'components/Sns';
+
+import { TypoLink } from 'components/TypoLink';
+import { Sns } from 'components/Sns';
+import { Menu } from 'components/Menu';
 
 /* Interfaces */
 interface MenuBarProps {
@@ -53,4 +56,4 @@ const SideMenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
   );
 };
 
-export default SideMenuBar;
+export { SideMenuBar };

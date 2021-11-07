@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
 import { PageProps } from 'gatsby';
 
-import Layout from 'components/Layout';
-import SEO from 'components/Seo';
+import { Layout } from 'components/Layout';
+import { Seo } from 'components/Seo';
 
 const Contact: React.VFC<PageProps> = () => (
   <Layout contentMaxWidth="sm">
-    <SEO title="Contact" />
+    <Seo title="Contact" />
     <iframe
       title="test"
       src={process.env.GOOGLE_FORM_SRC}

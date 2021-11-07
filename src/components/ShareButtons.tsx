@@ -36,4 +36,4 @@ const ShareButtons: React.VFC<ShareButtonsProps> = ({ url, style }) => (
   </Box>
 );
 
-export default ShareButtons;
+export { ShareButtons };

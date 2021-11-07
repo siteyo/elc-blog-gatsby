@@ -61,4 +61,4 @@ const LinkCard: React.VFC<LinkCardProps> = ({
   );
 };
 
-export default LinkCard;
+export { LinkCard };

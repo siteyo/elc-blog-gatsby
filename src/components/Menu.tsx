@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Grid, GridJustification } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
 
-import TypoLink from 'components/TypoLink';
+import { TypoLink } from 'components/TypoLink';
 
 /* Interface */
 type Underline = 'none' | 'hover' | 'always';
@@ -61,4 +61,4 @@ const Menu: React.VFC<MenuProps> = ({
   );
 };
 
-export default Menu;
+export { Menu };

@@ -12,10 +12,10 @@ import {
 } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import theme from 'styles/Theme';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import Menu from 'components/Menu';
+import { theme } from 'styles/Theme';
+import { Header } from 'components/Header';
+import { Footer } from 'components/Footer';
+import { Menu } from 'components/Menu';
 
 interface HomeLayoutProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -84,4 +84,4 @@ const HomeLayout: React.VFC<HomeLayoutProps> = ({ children }) => {
   );
 };
 
-export default HomeLayout;
+export { HomeLayout };

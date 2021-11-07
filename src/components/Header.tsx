@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { Box, Grid, Hidden, makeStyles } from '@material-ui/core';
 
-import TypoLink from 'components/TypoLink';
-import Sns from 'components/Sns';
+import { TypoLink } from 'components/TypoLink';
+import { Sns } from 'components/Sns';
 
 interface HeaderProps {
   title: string;
@@ -38,4 +38,4 @@ const Header: React.VFC<HeaderProps> = ({ title }) => {
   );
 };
 
-export default Header;
+export { Header };

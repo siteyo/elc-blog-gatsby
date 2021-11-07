@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+
 import { Grid, IconButton, Hidden, Typography } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
@@ -27,4 +28,4 @@ const Footer: React.VFC = () => {
   );
 };
 
-export default Footer;
+export { Footer };
