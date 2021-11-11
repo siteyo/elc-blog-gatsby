@@ -11,41 +11,46 @@ import ReactPlayer from 'react-player';
 
 import { LinkCard } from 'components/LinkCard';
 
-const generalOptions: Options = {
+type Align = 'inherit' | 'left' | 'center' | 'right';
+
+const useOptions = (
+  textAlign: Align = 'left',
+  imgAlign: Align = 'center',
+): Options => ({
   renderNode: {
     [BLOCKS.PARAGRAPH]: (_, children) => (
-      <Typography variant="body1" color="primary">
+      <Typography align={textAlign} variant="body1" color="primary">
         {children}
       </Typography>
     ),
 
     [BLOCKS.HEADING_1]: (_, children) => (
-      <Typography variant="h3" color="primary">
+      <Typography align={textAlign} variant="h3" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_2]: (_, children) => (
-      <Typography variant="h4" color="primary">
+      <Typography align={textAlign} variant="h4" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_3]: (_, children) => (
-      <Typography variant="h5" color="primary">
+      <Typography align={textAlign} variant="h5" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_4]: (_, children) => (
-      <Typography variant="h6" color="primary">
+      <Typography align={textAlign} variant="h6" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_5]: (_, children) => (
-      <Typography variant="h6" color="primary">
+      <Typography align={textAlign} variant="h6" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_6]: (_, children) => (
-      <Typography variant="h6" color="primary">
+      <Typography align={textAlign} variant="h6" color="primary">
         {children}
       </Typography>
     ),
@@ -53,7 +58,7 @@ const generalOptions: Options = {
     [BLOCKS.HR]: () => <Divider />,
 
     [BLOCKS.LIST_ITEM]: (_, children) => (
-      <Typography>
+      <Typography align={textAlign} variant="body1">
         <li>{children}</li>
       </Typography>
     ),
@@ -100,7 +105,11 @@ const generalOptions: Options = {
     },
     [BLOCKS.EMBEDDED_ASSET]: node => {
       const { data } = node;
-      return <GatsbyImage image={data.target?.gatsbyImageData} />;
+      return (
+        <Box style={{ textAlign: imgAlign }}>
+          <GatsbyImage image={data.target?.gatsbyImageData} />
+        </Box>
+      );
     },
 
     [INLINES.HYPERLINK]: (node, children) => {
@@ -114,16 +123,16 @@ const generalOptions: Options = {
   },
   renderMark: {
     [MARKS.BOLD]: text => (
-      <Typography color="primary" variant="body1">
+      <Typography align={textAlign} color="primary" variant="body1">
         <b>{text}</b>
       </Typography>
     ),
     [MARKS.ITALIC]: text => (
-      <Typography color="primary" variant="body1">
+      <Typography align={textAlign} color="primary" variant="body1">
         <i>{text}</i>
       </Typography>
     ),
   },
-};
+});
 
-export { generalOptions };
+export { useOptions };

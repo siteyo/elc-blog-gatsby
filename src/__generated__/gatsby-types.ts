@@ -5270,10 +5270,10 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
+type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
@@ -5282,6 +5282,14 @@ type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
+
+type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title'>
+      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
+    )> }> };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5297,14 +5305,6 @@ type SocialQueryVariables = Exact<{ [key: string]: never; }>;
 type SocialQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter' | 'youtube'>> }
-    )> }> };
-
-type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title'>
-      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;

@@ -7,7 +7,7 @@ import { Typography, Box } from '@material-ui/core';
 
 import { Layout } from 'components/Layout';
 import { ShareButtons } from 'components/ShareButtons';
-import { generalOptions } from 'styles/RichTextOptions';
+import { useOptions } from 'styles/RichTextOptions';
 
 export interface WorkPageContext {
   post: GatsbyTypes.ContentfulWorksEdge;
@@ -18,6 +18,7 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
   location,
 }) => {
   const { body } = pageContext.post.node;
+  const options = useOptions('left');
   return (
     <Layout contentMaxWidth="sm">
       <Typography variant="h2" color="primary">
@@ -27,7 +28,7 @@ const Work: React.VFC<PageProps<Record<string, never>, WorkPageContext>> = ({
         {pageContext.post.node.createdAt}
       </Typography>
       <Box style={{ margin: '1rem 0' }}>
-        {body && renderRichText(body, generalOptions)}
+        {body && renderRichText(body, options)}
       </Box>
       <ShareButtons url={location.href} />
     </Layout>
