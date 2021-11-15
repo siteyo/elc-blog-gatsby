@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, Grid, Hidden, makeStyles } from '@material-ui/core';
+import { Box, Grid, makeStyles } from '@material-ui/core';
 
 import { TypoLink } from 'components/TypoLink';
 import { Sns } from 'components/Sns';
@@ -28,10 +28,8 @@ const Header: React.VFC<HeaderProps> = ({ title }) => {
             {title}
           </TypoLink>
         </Grid>
-        <Grid item sm={2}>
-          <Hidden xsDown>
-            <Sns />
-          </Hidden>
+        <Grid item sm={2} xs={4}>
+          <Sns />
         </Grid>
       </Grid>
     </Box>

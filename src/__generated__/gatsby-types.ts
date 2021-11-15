@@ -5270,10 +5270,10 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
@@ -5283,14 +5283,6 @@ type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 type MenuLinksQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }> }> };
 
-type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title'>
-      & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
-    )> }> };
-
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5298,6 +5290,11 @@ type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly socialUrl: Maybe<Pick<SiteSiteMetadataSocialUrl, 'twitter'>> }
     )> }>, readonly contentfulAsset: Maybe<{ readonly resize: Maybe<Pick<ContentfulResize, 'src'>> }> };
+
+type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type SocialQueryVariables = Exact<{ [key: string]: never; }>;
 
