@@ -16,6 +16,7 @@ import { theme } from 'styles/Theme';
 import { Header } from 'components/Header';
 import { Footer } from 'components/Footer';
 import { Menu } from 'components/Menu';
+import { SideMenuBar } from 'components/SideMenuBar';
 
 interface HomeLayoutProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -40,10 +41,6 @@ const HomeLayout: React.VFC<HomeLayoutProps> = ({ children }) => {
         site {
           siteMetadata {
             title
-            menuLinks {
-              link
-              name
-            }
           }
         }
       }
@@ -54,6 +51,7 @@ const HomeLayout: React.VFC<HomeLayoutProps> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container className={classes.container} maxWidth="md">
+        <SideMenuBar />
         <Box className={classes.inner}>
           <Grid container justifyContent="flex-end">
             <Grid item>{children}</Grid>

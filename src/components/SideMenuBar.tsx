@@ -1,58 +1,55 @@
 import * as React from 'react';
 
-import { Drawer, IconButton, makeStyles } from '@material-ui/core';
+import { Box, Drawer, IconButton, Hidden, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { TypoLink } from 'components/TypoLink';
-import { Sns } from 'components/Sns';
 import { Menu } from 'components/Menu';
-
-/* Interfaces */
-interface MenuBarProps {
-  title: string;
-  menuLinks: ReadonlyArray<
-    GatsbyTypes.Maybe<
-      Pick<GatsbyTypes.SiteSiteMetadataMenuLinks, 'link' | 'name'>
-    >
-  >;
-}
 
 /* Styles */
 const useStyles = makeStyles({
-  drawerContainer: {
-    listStyle: 'none',
+  container: {
+    margin: '20vh 10vw',
   },
-  drawerItem: {
-    margin: '1rem',
+  button: {
+    position: 'fixed',
+    top: 0,
+    right: 0,
+  },
+  paper: {
+    width: '72vw',
   },
 });
 
 /* Component */
-const SideMenuBar: React.VFC<MenuBarProps> = ({ title, menuLinks }) => {
+const SideMenuBar: React.VFC = () => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
   return (
-    <div>
-      <IconButton onClick={handleDrawerToggle}>
-        <MenuIcon color="primary" />
-      </IconButton>
-      <Drawer open={mobileOpen} anchor="right" onClose={handleDrawerToggle}>
-        <TypoLink variant="h1" to="/">
-          {title}
-        </TypoLink>
-        <Sns />
-        <ul className={classes.drawerContainer}>
-          {menuLinks.map(menu => (
-            <li className={classes.drawerItem} key={menu?.name}>
-              <TypoLink variant="h4" underline="always" to={menu?.link ?? '/'}>
-                {menu?.name ?? ''}
-              </TypoLink>
-            </li>
-          ))}
-        </ul>
+    <Box style={{ maxWidth: '50%' }}>
+      <Hidden smUp>
+        <IconButton className={classes.button} onClick={handleDrawerToggle}>
+          <MenuIcon color="primary" />
+        </IconButton>
+      </Hidden>
+      <Drawer
+        classes={{ paper: classes.paper }}
+        open={mobileOpen}
+        anchor="right"
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+      >
+        <Box className={classes.container}>
+          <Menu
+            variant="h3"
+            color="primary"
+            underline="always"
+            justifyContent="flex-start"
+            align="right"
+          />
+        </Box>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
