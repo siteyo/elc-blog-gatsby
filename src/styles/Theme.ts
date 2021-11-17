@@ -11,6 +11,7 @@ const baseTheme = createTheme({
   },
   typography: {
     fontSize: 12,
+    fontFamily: '"Noto Sans JP"',
   },
 });
 
