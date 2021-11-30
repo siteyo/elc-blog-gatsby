@@ -5270,11 +5270,6 @@ type RequestQueryVariables = Exact<{ [key: string]: never; }>;
 
 type RequestQuery = { readonly contentfulArticles: Maybe<{ readonly content: Maybe<Pick<ContentfulArticlesContent, 'raw'>> }> };
 
-type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
 type LayoutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5282,6 +5277,11 @@ type LayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title'>
       & { readonly menuLinks: Maybe<ReadonlyArray<Maybe<Pick<SiteSiteMetadataMenuLinks, 'link' | 'name'>>>> }
     )> }> };
+
+type HomeLayoutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HomeLayoutQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type MenuLinksQueryVariables = Exact<{ [key: string]: never; }>;
 

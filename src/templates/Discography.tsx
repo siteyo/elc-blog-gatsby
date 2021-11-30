@@ -37,7 +37,7 @@ const Discography: React.FC<
     }
   };
   return (
-    <Layout>
+    <Layout contentMaxWidth="sm" location="Discography">
       <Seo title="Discography" />
       <Grid container spacing={8}>
         {data.allContentfulDiscs.edges.map(edge => (

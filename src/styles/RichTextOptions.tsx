@@ -25,32 +25,32 @@ const useOptions = (
     ),
 
     [BLOCKS.HEADING_1]: (_, children) => (
-      <Typography align={textAlign} variant="h3" color="primary">
-        {children}
-      </Typography>
-    ),
-    [BLOCKS.HEADING_2]: (_, children) => (
       <Typography align={textAlign} variant="h4" color="primary">
         {children}
       </Typography>
     ),
-    [BLOCKS.HEADING_3]: (_, children) => (
+    [BLOCKS.HEADING_2]: (_, children) => (
       <Typography align={textAlign} variant="h5" color="primary">
         {children}
       </Typography>
     ),
-    [BLOCKS.HEADING_4]: (_, children) => (
+    [BLOCKS.HEADING_3]: (_, children) => (
       <Typography align={textAlign} variant="h6" color="primary">
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_4]: (_, children) => (
+      <Typography align={textAlign} variant="body1" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_5]: (_, children) => (
-      <Typography align={textAlign} variant="h6" color="primary">
+      <Typography align={textAlign} variant="body2" color="primary">
         {children}
       </Typography>
     ),
     [BLOCKS.HEADING_6]: (_, children) => (
-      <Typography align={textAlign} variant="h6" color="primary">
+      <Typography align={textAlign} variant="body2" color="primary">
         {children}
       </Typography>
     ),

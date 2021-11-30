@@ -1,7 +1,14 @@
 import * as React from 'react';
 
 import { useStaticQuery, graphql } from 'gatsby';
-import { Box, Container, CssBaseline, Hidden } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  CssBaseline,
+  Hidden,
+  Typography,
+  makeStyles,
+} from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import { theme } from 'styles/Theme';
@@ -10,15 +17,28 @@ import { Footer } from 'components/Footer';
 import { Menu } from 'components/Menu';
 import { SideMenuBar } from 'components/SideMenuBar';
 
+/* Styles */
+const useStyles = makeStyles({
+  location: {
+    textAlign: 'center',
+    margin: '2rem 0 1rem',
+  },
+});
+
 /* Interfaces */
 interface LayoutProps {
+  location: string;
   contentMaxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   children?: React.ReactChild | React.ReactChild[];
-  location?: Location;
 }
 
 /* Component */
-const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
+const Layout: React.VFC<LayoutProps> = ({
+  location,
+  contentMaxWidth,
+  children,
+}) => {
+  const classes = useStyles();
   const data = useStaticQuery<GatsbyTypes.LayoutQuery>(
     graphql`
       query Layout {
@@ -38,10 +58,7 @@ const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="md">
-        <SideMenuBar
-          title={data.site?.siteMetadata?.title ?? ''}
-          menuLinks={data.site?.siteMetadata?.menuLinks ?? []}
-        />
+        <SideMenuBar />
         <Header title={data.site?.siteMetadata?.title ?? ''} />
         <Hidden xsDown>
           <Menu
@@ -52,6 +69,9 @@ const Layout: React.VFC<LayoutProps> = ({ contentMaxWidth, children }) => {
             align="center"
           />
         </Hidden>
+        <Typography className={classes.location} variant="h3" color="primary">
+          {location}
+        </Typography>
         <Container maxWidth={contentMaxWidth}>
           <Box my={5}>
             <div>{children}</div>

@@ -12,7 +12,7 @@ const Biography: React.FC<PageProps<GatsbyTypes.BioQuery>> = ({ data }) => {
   const content = data.contentfulArticles?.content;
   const options = useOptions('center');
   return (
-    <Layout contentMaxWidth="sm">
+    <Layout contentMaxWidth="sm" location="Biography">
       <Seo title="Biography" />
       <>{content && renderRichText(content, options)}</>
     </Layout>

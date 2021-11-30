@@ -6,7 +6,7 @@ import { Layout } from 'components/Layout';
 import { Seo } from 'components/Seo';
 
 const Contact: React.VFC<PageProps> = () => (
-  <Layout contentMaxWidth="sm">
+  <Layout contentMaxWidth="sm" location="Contact">
     <Seo title="Contact" />
     <iframe
       title="test"

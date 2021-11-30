@@ -12,7 +12,7 @@ const Request: React.VFC<PageProps<GatsbyTypes.RequestQuery>> = ({ data }) => {
   const content = data.contentfulArticles?.content;
   const options = useOptions('left');
   return (
-    <Layout contentMaxWidth="sm">
+    <Layout contentMaxWidth="sm" location="Mix request">
       <Seo title="Mix request" />
       <>{content && renderRichText(content, options)}</>
     </Layout>

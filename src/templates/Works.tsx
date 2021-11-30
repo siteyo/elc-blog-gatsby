@@ -46,7 +46,7 @@ const Works: React.VFC<
     }
   };
   return (
-    <Layout contentMaxWidth="sm">
+    <Layout contentMaxWidth="sm" location="Works">
       <Seo title="Works" />
       <div>{content}</div>
       <Pagination
