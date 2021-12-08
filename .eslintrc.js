@@ -52,6 +52,7 @@ module.exports = {
         extensions: ['.jsx', '.tsx'],
       },
     ],
+    'react/function-component-definition': 'off',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
     'import/extensions': [
