@@ -17,13 +17,13 @@ interface SeoProps {
   meta?: Meta[];
 }
 
-const Seo: React.VFC<SeoProps> = function ({
+const Seo: React.VFC<SeoProps> = ({
   description,
   image,
   lang = 'ja',
   meta = [],
   title,
-}) {
+}) => {
   const data = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
       query Seo {

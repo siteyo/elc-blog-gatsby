@@ -12,11 +12,11 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.HomeImageQuery>> = ({
 }) => (
   <HomeLayout>
     <Seo title="Home" />
-    <>
+    <div>
       {data.contentfulAsset?.gatsbyImageData && (
         <GatsbyImage image={data.contentfulAsset.gatsbyImageData} alt="" />
       )}
-    </>
+    </div>
   </HomeLayout>
 );
 

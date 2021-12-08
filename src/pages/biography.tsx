@@ -14,7 +14,7 @@ const Biography: React.FC<PageProps<GatsbyTypes.BioQuery>> = ({ data }) => {
   return (
     <Layout contentMaxWidth="sm" location="Biography">
       <Seo title="Biography" />
-      <>{content && renderRichText(content, options)}</>
+      <div>{content && renderRichText(content, options)}</div>
     </Layout>
   );
 };

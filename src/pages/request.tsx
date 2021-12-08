@@ -14,7 +14,7 @@ const Request: React.VFC<PageProps<GatsbyTypes.RequestQuery>> = ({ data }) => {
   return (
     <Layout contentMaxWidth="sm" location="Mix request">
       <Seo title="Mix request" />
-      <>{content && renderRichText(content, options)}</>
+      <div>{content && renderRichText(content, options)}</div>
     </Layout>
   );
 };
