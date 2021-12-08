@@ -17,13 +17,13 @@ interface SeoProps {
   meta?: Meta[];
 }
 
-const Seo: React.VFC<SeoProps> = ({
+const Seo: React.VFC<SeoProps> = function ({
   description,
   image,
   lang = 'ja',
   meta = [],
   title,
-}) => {
+}) {
   const data = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
       query Seo {
@@ -37,9 +37,7 @@ const Seo: React.VFC<SeoProps> = ({
           }
         }
         contentfulAsset(title: { eq: "HomeImage" }) {
-          resize(toFormat: WEBP, quality: 50, width: 400) {
-            src
-          }
+          gatsbyImageData(formats: WEBP, quality: 50, width: 400)
         }
       }
     `,
