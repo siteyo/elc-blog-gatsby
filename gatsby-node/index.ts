@@ -87,9 +87,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
                       description
                       slug
                       image {
-                        fixed {
-                          srcWebp
-                        }
+                        gatsbyImageData
                       }
                       internal {
                         type
