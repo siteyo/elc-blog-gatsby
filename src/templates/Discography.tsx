@@ -39,9 +39,9 @@ const Discography: React.FC<
   return (
     <Layout contentMaxWidth="sm" location="Discography">
       <Seo title="Discography" />
-      <Grid container spacing={8}>
+      <Grid container spacing={3}>
         {data.allContentfulDiscs.edges.map(edge => (
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <Disc
               title={edge.node.title ?? ''}
               released={edge.node.released ?? ''}
